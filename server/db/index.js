@@ -109,14 +109,28 @@ const seed = async()=> {
   const V4Image = await loadImage('images/Aretha Franklin.png')
   const V5Image = await loadImage('images/Blues Traveler.png')
   const V6Image = await loadImage('images/Paul McCartney.png')
+  const V7Image = await loadImage('images/LeonBridges.jpeg')
+  const V8Image = await loadImage('images/BillyJoel.jpg')
+  const V9Image = await loadImage('images/Beyonce.jpeg')
+  const V10Image = await loadImage('images/AARONLEE.jpeg')
+  const V11Image = await loadImage('images/MaggieRodgers.jpeg')
+  const V12Image = await loadImage('images/B.T.Express.jpeg')
+
 
   let [foo, bar, bazz] = await Promise.all([
-    createProduct({ name: 'Silk Sonic', price: 26.99, title: "An Evening With Silk Sonic" , image: V1Image }),
-    createProduct({ name: 'Ray Charles', price: 36.99, title: "Now Playing" , image: V2Image }),
-    createProduct({ name: 'DOORS', price: 30.00, title: "Alive She Cried (40TH ANNIVERSARY)" , image: V3Image}),
-    createProduct({ name: 'Aretha Franklin' , price: 149.98, title: "A Portrait Of The Queen" , image: V4Image }),
-    createProduct({ name: 'Blues Traveler' , price: 16.98, title: "Live And Acoustic Fall of 1997" , image: V5Image }),
-    createProduct({ name: 'Paul McCartney' , price: 37.99, title: "Tug Of War" , image: V6Image }),
+    createProduct({ name: 'Silk Sonic', price: 26.99, title: "An Evening With Silk Sonic", image: V1Image,  }),
+    createProduct({ name: 'Ray Charles', price: 36.99, title: "Now Playing", image: V2Image, }),
+    createProduct({ name: 'DOORS', price: 30.00, title: "Alive She Cried (40TH ANNIVERSARY)", image: V3Image, }),
+    createProduct({ name: 'Aretha Franklin', price: 149.98, title: "A Portrait Of The Queen", image: V4Image, }),
+    createProduct({ name: 'Blues Traveler', price: 16.98, title: "Live And Acoustic Fall of 1997", image: V5Image, }),
+    createProduct({ name: 'Paul McCartney', price: 37.99, title: "Tug Of War", image: V6Image,  }),
+    createProduct({ name: 'Leon Bridges', price: 22.99, title: "Good Thing", image: V7Image,}),
+    createProduct({ name: 'Billy Joel', price: 28.98, title: "StreetLife Serenade", image: V8Image, }),
+    createProduct({ name: 'Beyonce', price: 54.98, title: "HOMECOMING: The Live Album", image: V9Image, }),
+    createProduct({ name: 'Tasian, Aaron Lee', price: 27.98, title: "Stellar Evolution", image: V10Image, }),
+    createProduct({ name: 'Maggie Rogers', price: 29.99, title: "Don't Forget Me Evergreen", image: V11Image,  }),
+    createProduct({ name: 'B.T.EXPRESS', price: 35.98, title: "DO IT TIL YOU'RE SATISFIED", image: V12Image,}),
+
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
