@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import ProductImageEditor from './ProductImageEditor';
@@ -21,7 +20,11 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
               const cartItem = cartItems.find(lineItem => lineItem.product_id === product.id);
               return (
                 <li key={product.id}>
-                  <Link to={`/products/${product.id}`}>{product.name}</Link> {product.name}
+                  <Link to={`/products/${product.id}`}>
+                    {/* Render the product image */}
+                    {product.image ? <img src={product.image} alt={product.name} /> : null}
+                    {product.name}
+                  </Link>
                   {
                     auth.id ? (
                       <div>
