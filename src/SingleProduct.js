@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "./api";
@@ -8,19 +9,16 @@ import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 
-const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, auth, isAdmin }) => {
+const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, auth, isAdmin, createPreorder }) => {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
 
-  // get the product id from url
   const { id } = useParams();
 
-  // find selected product from products list
   const selectedProduct = products?.find((product) => product.id === id);
 
   useEffect(() => {
     if (selectedProduct) {
-      // fetch reviews from db
       const fetchReviews = async (productId) => {
         await api.fetchProductReviews(productId, setReviews);
       };
@@ -65,12 +63,15 @@ const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, au
               {auth && (
                 <>
                   <Box sx={{ display: 'flex', alignItems: 'center', mt: "auto" }}>
-                    {/* Add your Wishlist logic here */}
-
                     <Tooltip title="Add to Cart">
                       <IconButton size="small" onClick={() => { cartItem ? updateLineItem(cartItem) : createLineItem(selectedProduct) }}><ShoppingCartIcon /></IconButton>
                     </Tooltip>
-                    {/* Add your isAdmin logic here */}
+                    {selectedProduct?.is_preorder && (
+                      <Tooltip title="Preorder">
+                        <IconButton size="small" onClick={() => createPreorder(selectedProduct)}><AccessAlarmOutlinedIcon /></IconButton>
+                      </Tooltip>
+                    )}
+                    {cartItem ? <Tooltip title="Add Another"><IconButton size="small" onClick={() => updateLineItem(cartItem)}><ShoppingCartIcon /></IconButton></Tooltip> : null}
                   </Box>
 
                   <Box sx={{ mt: "1rem" }}>

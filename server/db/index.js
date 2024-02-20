@@ -49,7 +49,6 @@ const seed = async()=> {
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
-   
 
     CREATE TABLE users(
       id UUID PRIMARY KEY,
@@ -65,7 +64,9 @@ const seed = async()=> {
       name VARCHAR(100) UNIQUE NOT NULL,
       price NUMERIC NOT NULL,
       title VARCHAR(100),
-      image TEXT
+      image TEXT,
+      category VARCHAR(50) DEFAULT 'regular' NOT NULL,
+      is_preorder BOOLEAN DEFAULT false NOT NULL
     );
 
     CREATE TABLE reviews(
@@ -75,7 +76,7 @@ const seed = async()=> {
       comments VARCHAR(255) NOT NULL,
       ratings NUMERIC NOT NULL,
       product_id UUID REFERENCES products(id) NOT NULL,
-      CHECK (ratings>0 AND ratings<6)
+      CHECK (ratings > 0 AND ratings < 6)
     );
 
     CREATE TABLE orders(
@@ -118,19 +119,18 @@ const seed = async()=> {
 
 
   let [foo, bar, bazz] = await Promise.all([
-    createProduct({ name: 'Silk Sonic', price: 26.99, title: "An Evening With Silk Sonic", image: V1Image,  }),
-    createProduct({ name: 'Ray Charles', price: 36.99, title: "Now Playing", image: V2Image, }),
-    createProduct({ name: 'DOORS', price: 30.00, title: "Alive She Cried (40TH ANNIVERSARY)", image: V3Image, }),
-    createProduct({ name: 'Aretha Franklin', price: 149.98, title: "A Portrait Of The Queen", image: V4Image, }),
-    createProduct({ name: 'Blues Traveler', price: 16.98, title: "Live And Acoustic Fall of 1997", image: V5Image, }),
-    createProduct({ name: 'Paul McCartney', price: 37.99, title: "Tug Of War", image: V6Image,  }),
-    createProduct({ name: 'Leon Bridges', price: 22.99, title: "Good Thing", image: V7Image,}),
-    createProduct({ name: 'Billy Joel', price: 28.98, title: "StreetLife Serenade", image: V8Image, }),
-    createProduct({ name: 'Beyonce', price: 54.98, title: "HOMECOMING: The Live Album", image: V9Image, }),
-    createProduct({ name: 'Tasian, Aaron Lee', price: 27.98, title: "Stellar Evolution", image: V10Image, }),
-    createProduct({ name: 'Maggie Rogers', price: 29.99, title: "Don't Forget Me Evergreen", image: V11Image,  }),
-    createProduct({ name: 'B.T.EXPRESS', price: 35.98, title: "DO IT TIL YOU'RE SATISFIED", image: V12Image,}),
-
+    createProduct({ name: 'Silk Sonic', price: 26.99, title: 'An Evening With Silk Sonic', image: V1Image, category: 'regular' }),
+    createProduct({ name: 'Ray Charles', price: 36.99, title: 'Now Playing', image: V2Image, category: 'regular' }),
+    createProduct({ name: 'DOORS', price: 30.00, title: 'Alive She Cried (40TH ANNIVERSARY)', image: V3Image, category: 'regular' }),
+    createProduct({ name: 'Aretha Franklin', price: 149.98, title: 'A Portrait Of The Queen', image: V4Image, category: 'regular' }),
+    createProduct({ name: 'Blues Traveler', price: 16.98, title: 'Live And Acoustic Fall of 1997', image: V5Image, category: 'regular' }),
+    createProduct({ name: 'Paul McCartney', price: 37.99, title: 'Tug Of War', image: V6Image, category: 'regular' }),
+    createProduct({ name: 'Leon Bridges', price: 22.99, title: 'Good Thing', image: V7Image, category: 'preorder', is_preorder: true }),
+    createProduct({ name: 'Billy Joel', price: 28.98, title: 'StreetLife Serenade', image: V8Image, category: 'preorder', is_preorder: true }),
+    createProduct({ name: 'Beyonce', price: 54.98, title: 'HOMECOMING: The Live Album', image: V9Image, category: 'preorder', is_preorder: true }),
+    createProduct({ name: 'Tasian, Aaron Lee', price: 27.98, title: 'Stellar Evolution', image: V10Image, category: 'preorder', is_preorder: true }),
+    createProduct({ name: 'Maggie Rogers', price: 29.99, title: "Don't Forget Me Evergreen", image: V11Image, category: 'preorder', is_preorder: true }),
+    createProduct({ name: 'B.T.EXPRESS', price: 35.98, title: 'DO IT TIL YOU\'RE SATISFIED', image: V12Image, category: 'preorder', is_preorder: true }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})

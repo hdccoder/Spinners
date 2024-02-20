@@ -1,48 +1,57 @@
-const {
-  fetchProducts,
-  updateProduct,
-  fetchReviews,
-} = require('../db');
-
 const express = require('express');
 const app = express.Router();
 const { isLoggedIn, isAdmin } = require('./middleware');
-const { createReview } = require('../db/reviews');
+const { createReview, fetchReviews, fetchProducts, updateProduct } = require('../db');
 
-app.get('/', async(req, res, next)=> {
+app.get('/', async (req, res, next) => {
   try {
-    res.send(await fetchProducts());
-  }
-  catch(ex){
+    // Fetch all products, including preorders
+    const products = await fetchProducts();
+    res.send(products);
+  } catch (ex) {
     next(ex);
   }
 });
 
-//fetch product by Id
-app.get('/:id', async(req, res, next)=> {
+app.get('/:id', async (req, res, next) => {
   try {
-   res.send(req.params.id);
-  }
-  catch(ex){
+    // TODO: Implement logic to fetch a single product by ID, including reviews
+    const productId = req.params.id;
+    const product = await fetchProductById(productId);
+    res.send(product);
+  } catch (ex) {
     next(ex);
   }
 });
 
-
-app.put('/:id', isLoggedIn, isAdmin, async (req, res, next)=> {
-  res.send(await updateProduct({id: req.params.id, ...req.body}));
+app.put('/:id', isLoggedIn, isAdmin, async (req, res, next) => {
+  try {
+    // Update product information
+    const updatedProduct = await updateProduct({ id: req.params.id, ...req.body });
+    res.send(updatedProduct);
+  } catch (ex) {
+    next(ex);
+  }
 });
 
-//Fetch reviews for a given product
-app.get('/:id/reviews', async (req, res, next)=> {   
-    res.send(await fetchReviews(req.params.id));
+app.get('/:id/reviews', async (req, res, next) => {
+  try {
+    const productId = req.params.id;
+    const reviews = await fetchReviews(productId);
+    res.send(reviews);
+  } catch (ex) {
+    next(ex);
+  }
 });
 
-//a logged in user - Adds review for a given product
-app.post('/:id/reviews', isLoggedIn, async (req, res, next)=> {  
-      res.send(await createReview(req.body));
-  });
-
-
+app.post('/:id/reviews', isLoggedIn, async (req, res, next) => {
+  try {
+    const reviewData = { ...req.body, product_id: req.params.id };
+    const createdReview = await createReview(reviewData);
+    res.send(createdReview);
+  } catch (ex) {
+    next(ex);
+  }
+});
 
 module.exports = app;
