@@ -31,3 +31,4 @@ Whether you're a seasoned collector or new to the world of vinyl, I'm here to he
 };
 
 export default Bio
+

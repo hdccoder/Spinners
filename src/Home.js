@@ -13,7 +13,8 @@ import MonthSpins from './MonthSpins';
 import SpinClub from './SpinClub';
 import SingleProduct from './SingleProduct';
 import Bio from './Bio';
-
+import PreOrdersButton from './PreOrdersButton';
+import Preorder from './Preorder';
 
 const Home = ({ user , setUser }) => {
 
@@ -120,6 +121,7 @@ const Home = ({ user , setUser }) => {
                  <Banner/>
                  <MonthSpins products={ products }
                   />
+                  <PreOrdersButton/>
                  <SpinClub/>
                     </>
                   }>
@@ -156,7 +158,7 @@ const Home = ({ user , setUser }) => {
               />
 
               <Route path='/bio' element={<Bio/>}/>
-              
+              <Route path='/preorder' element={<Preorder/>}/>
                  
                \
                   { auth.id  &&
