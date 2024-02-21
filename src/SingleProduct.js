@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "./api";
@@ -7,7 +6,7 @@ import { Container, CardContent, Typography, Rating, Button, Box, Tooltip, IconB
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import EditNoteIcon from '@mui/icons-material/EditNote';
+import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
 const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, auth, isAdmin, createPreorder }) => {
   const navigate = useNavigate();
@@ -63,15 +62,21 @@ const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, au
               {auth && (
                 <>
                   <Box sx={{ display: 'flex', alignItems: 'center', mt: "auto" }}>
-                    <Tooltip title="Add to Cart">
-                      <IconButton size="small" onClick={() => { cartItem ? updateLineItem(cartItem) : createLineItem(selectedProduct) }}><ShoppingCartIcon /></IconButton>
-                    </Tooltip>
-                    {selectedProduct?.is_preorder && (
-                      <Tooltip title="Preorder">
-                        <IconButton size="small" onClick={() => createPreorder(selectedProduct)}><AccessAlarmOutlinedIcon /></IconButton>
+                    {cartItem ? (
+                      <Tooltip title="Add Another">
+                        <IconButton size="small" onClick={() => updateLineItem(cartItem)}><ShoppingCartIcon /></IconButton>
                       </Tooltip>
+                    ) : (
+                      selectedProduct.is_preorder && !cartItem ? (
+                        <Tooltip title="Preorder">
+                          <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><AccessAlarmOutlinedIcon /></IconButton>
+                        </Tooltip>
+                      ) : (
+                        <Tooltip title="Add to Cart">
+                          <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><ShoppingCartIcon /></IconButton>
+                        </Tooltip>
+                      )
                     )}
-                    {cartItem ? <Tooltip title="Add Another"><IconButton size="small" onClick={() => updateLineItem(cartItem)}><ShoppingCartIcon /></IconButton></Tooltip> : null}
                   </Box>
 
                   <Box sx={{ mt: "1rem" }}>
