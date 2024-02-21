@@ -32,7 +32,7 @@ const PreOrdersButton = () => {
       <Grid container>
         <Grid item xs={12}>
           <StyledButton variant="contained" onClick={buttonClick}>
-            Vinyl's Available For PreOrder
+            Vinyl's Available For Pre-Order
           </StyledButton>
         </Grid>
       </Grid>

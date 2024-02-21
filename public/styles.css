@@ -15,3 +15,15 @@ img {
   height: 20%;
   width: 20%;
 }
+
+.navLink {
+  color: inherit;
+  text-decoration: none; 
+}
+
+.navLink:hover {
+  text-decoration: underline; }
+
+.selectedLink {
+  text-decoration: underline; 
+}
