@@ -158,7 +158,15 @@ const Home = ({ user , setUser }) => {
               />
 
               <Route path='/bio' element={<Bio/>}/>
-              <Route path='/preorder' element={<Preorder/>}/>
+              <Route path='/preorder' element={<Preorder
+               products={products} 
+               cartItems={cartItems} 
+               createLineItem={createLineItem} 
+               updateLineItem={updateLineItem} 
+               auth={auth} 
+               updateProduct={updateProduct}
+              />}
+              />
                  
                \
                   { auth.id  &&
