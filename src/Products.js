@@ -1,7 +1,32 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import ProductImageEditor from './ProductImageEditor';
+import {
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  CardMedia,
+  Grid,
+  styled,
+} from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
+
+const ProductCard = styled(Card)({
+  width: 300, // Set a fixed width for all cards
+  height: '100%', // Set a fixed height for all cards
+  margin: '8px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+});
+
+const ProductMedia = styled(CardMedia)({
+  height: 250, // Adjust the height of the media
+  backgroundSize: 'contain', // Make the image take up more space
+});
 
 const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
   const [searchParams, setSearchParams] = useSearchParams({});
@@ -17,7 +42,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
           setSearchParams(ev.target.value ? { search: ev.target.value } : {});
         }}
       />
-      <ul>
+      <Grid container spacing={2}>
         {products
           .filter(
             (product) =>
@@ -26,41 +51,76 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
           .map((product) => {
             const cartItem = cartItems.find((lineItem) => lineItem.product_id === product.id);
             return (
-              <li key={product.id}>
-                <Link to={`/products/${product.id}`}>
-                  {/* Render the product image */}
-                  {product.image ? <img src={product.image} alt={product.name} /> : null}
-                  {product.name}
-                </Link>
-                {auth.id ? (
-                  <div>
-                    {product.is_preorder ? (
-                      // Display "Add Another" button if the item is in the cart
-                      cartItem ? (
-                        <button onClick={() => updateLineItem(cartItem)}>Add Another</button>
-                      ) : (
-                        <button onClick={() => createLineItem(product)}>Preorder</button>
-                      )
-                    ) : (
-                      // Display "Add Another" button if the item is in the cart
-                      cartItem ? (
-                        <button onClick={() => updateLineItem(cartItem)}>Add Another</button>
-                      ) : (
-                        <button onClick={() => createLineItem(product)}>Add to Cart</button>
-                      )
+              <Grid item key={product.id}>
+                <ProductCard>
+                  <ProductMedia
+                    image={product.image}
+                    title={product.name}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" component="div">
+                      {product.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {product.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {product.is_preorder ? 'Preorder' : 'In Stock'}
+                    </Typography>
+                    {auth.id && (
+                      <div>
+                        {product.is_preorder ? (
+                          cartItem ? (
+                            <Button
+                              startIcon={<ShoppingCartIcon />}
+                              onClick={() => updateLineItem(cartItem)}
+                            >
+                              Add Another
+                            </Button>
+                          ) : (
+                            <Button
+                              startIcon={<AccessAlarmOutlinedIcon />}
+                              onClick={() => createLineItem(product)}
+                            >
+                              Preorder
+                            </Button>
+                          )
+                        ) : (
+                          cartItem ? (
+                            <Button
+                              startIcon={<ShoppingCartIcon />}
+                              onClick={() => updateLineItem(cartItem)}
+                            >
+                              Add Another
+                            </Button>
+                          ) : (
+                            <Button
+                              startIcon={<ShoppingCartIcon />}
+                              onClick={() => createLineItem(product)}
+                            >
+                              Add to Cart
+                            </Button>
+                          )
+                        )}
+                      </div>
                     )}
-                  </div>
-                ) : null}
-                {auth.is_admin ? (
-                  <div>
-                    <Link to={`/products/${product.id}/edit`}>Edit</Link>
-                    <ProductImageEditor updateProduct={updateProduct} product={product} />
-                  </div>
-                ) : null}
-              </li>
+                    {auth.is_admin && (
+                      <div>
+                        <Link to={`/products/${product.id}/edit`}>Edit</Link>
+                        <ProductImageEditor updateProduct={updateProduct} product={product} />
+                      </div>
+                    )}
+                  </CardContent>
+                  <CardActions>
+                    <Link to={`/products/${product.id}`}>
+                      View Details
+                    </Link>
+                  </CardActions>
+                </ProductCard>
+              </Grid>
             );
           })}
-      </ul>
+      </Grid>
     </div>
   );
 };
