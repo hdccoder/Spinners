@@ -60,7 +60,7 @@ const AppHeader = ({ auth, logout ,cartCount,products}) => {
                 <AccountCircleIcon fontSize='large' />
               </IconButton>
             </Tooltip> */}
-            display cart
+           
             <Tooltip title="Cart">
           <IconButton color="inherit" onClick={()=>{navigate("/cart")}}>
           <Badge badgeContent={cartCount} sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.dark" } }}>

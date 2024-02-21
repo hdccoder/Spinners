@@ -21,7 +21,7 @@ In addition to running my store, I'm also an active member of the NYC music comm
 Whether you're a seasoned collector or new to the world of vinyl, I'm here to help guide you on your musical journey. With my infectious enthusiasm and deep love for all things music, I guarantee you'll leave my store feeling inspired and energized.
             </Typography>
              {/* Signature */}
-          <div style={{ position: 'absolute', bottom: -210, left: '80%', transform: 'translateX(-50%)', marginTop: '10px' }}>
+          <div style={{ position: 'absolute', bottom: -210, left: '75%', transform: 'translateX(-50%)', marginTop: '10px' }}>
             <img src="/public/assets/BlackSig.png" alt="YourSignature" style={{ width: '75%', height: 'auto' }} />
           </div>
           </Grid>
