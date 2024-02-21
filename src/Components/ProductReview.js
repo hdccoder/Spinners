@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "./api";
+import api from "../api";
 import { Box, Button, Card, CardContent, CardMedia, Container, Rating, TextField, Typography} from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 

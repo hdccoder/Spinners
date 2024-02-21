@@ -19,7 +19,7 @@ const Copyright = (props) => {
 
 const AppFooter = () => {
   return (
-    <Box component={'footer'} position="sticky" sx={{ display: 'flex', zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: 'primary.light', height: "9rem" }}>
+    <Box component={'footer'} position="sticky" sx={{ display: 'flex', zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: 'white', height: "9rem" }}>
       <Container sx={{ flexGrow: 1, textAlign: 'center' }} maxWidth="sm">
         <Typography variant="body1">
           Visit us at: 2148 N. Soho, NewYork, NY 60611

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HashRouter, useNavigate, Route, Routes } from 'react-router-dom';
 import Home from './Home';
-import SignIn from './SignIn';
-import Login from './Login';
+import SignIn from './Components/SignIn';
+import Login from './Components/Login';
 import api from './api';
-import SignUp from './SignUp';
+import SignUp from './Components/SignUp';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 

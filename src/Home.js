@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Route, Routes, Link } from 'react-router-dom';
-import AppHeader from './AppHeader';
-import AppFooter from './AppFooter';
+import AppHeader from './Components/AppHeader';
+import AppFooter from './Components/AppFooter';
 import api from './api';
-import Cart from './Cart';
-import Products from './Products';
-import Orders from './Orders';
-import Banner from './Banner';
-import MonthSpins from './MonthSpins';
-import SpinClub from './SpinClub';
-import SingleProduct from './SingleProduct';
-import Bio from './Bio';
-import PreOrdersButton from './PreOrdersButton';
-import Preorder from './Preorder';
+import Cart from './Components/Cart';
+import Products from './Components/Products';
+import Orders from './Components/Orders';
+import Banner from './Components/Banner';
+import MonthSpins from './Components/MonthSpins';
+import SpinClub from './Components/SpinClub';
+import SingleProduct from './Components/SingleProduct';
+import Bio from './Components/Bio';
+import PreOrdersButton from './Components/PreOrdersButton';
+import Preorder from './Components/Preorder';
 
 const Home = ({ user , setUser }) => {
 

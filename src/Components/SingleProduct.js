@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "./api";
+import api from "../api";
 import { displayPrice } from "./DisplayPrice";
 import { Container, CardContent, Typography, Rating, Button, Box, Tooltip, IconButton, Card } from "@mui/material";
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
