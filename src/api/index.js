@@ -83,13 +83,24 @@ const attemptLoginWithToken = async (setAuth) => {
   }
 };
 
-const createPreorder = async ({ product, cart, lineItems, setLineItems }) => {
-  const response = await axios.post('/api/preorders', {
-    order_id: cart.id,
-    product_id: product.id
-  }, getHeaders());
-  setLineItems([...lineItems, response.data]);
-};
+// const createPreorder = async ({ product, cart, lineItems, setLineItems }) => {
+//   try {
+//     // Check if 'cart' is defined and has an 'id' property
+//     if (!cart || !cart.id) {
+//       throw new Error("Cart is undefined or does not have an 'id' property.");
+//     }
+
+//     const response = await axios.post('/api/preorders', {
+//       order_id: cart.id,
+//       product_id: product.id
+//     }, getHeaders());
+
+//     setLineItems([...lineItems, response.data]);
+//   } catch (error) {
+//     console.error(error.message);
+//     // Handle the error or notify the user as needed
+//   }
+// };
 
 const login = async ({ credentials, setAuth }) => {
   const response = await axios.post('/api/login', credentials);
@@ -117,7 +128,6 @@ const api = {
   removeFromCart,
   updateProduct,
   attemptLoginWithToken,
-  createPreorder, 
 };
 
 export default api;
