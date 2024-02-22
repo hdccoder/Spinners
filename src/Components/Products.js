@@ -34,7 +34,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
 
   return (
     <div>
-      <h2>Spins of the Month</h2>
+      <h2>Shop Our Spins</h2>
       <input
         placeholder='search'
         value={searchParams.get('search') || ''}

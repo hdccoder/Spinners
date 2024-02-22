@@ -47,34 +47,97 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
 
           {/* SHOP and Preorder Tooltips side by side */}
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 2 }}>
-            <Tooltip title={"Shop"} color="inherit" fontFamily="Noteworthy">
-              <NavLink
-                to='/products'
-                activeClassName="selectedLink"
-                className="navLink"
-                style={{
-                  color: 'limegreen',
-                  padding: '0.5rem',  // Adjust padding as needed
-                  textDecoration: 'none',  // Remove underline
-                }}
-              >
-                Shop
-              </NavLink>
-            </Tooltip>
+  <Tooltip title={"Shop"} color="inherit" fontFamily="Noteworthy">
+    <NavLink
+    to='/products'
+    activeClassName="selectedLink"
+    className="navLink"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      textDecoration: 'none',
+    }}
+  >
+    <img
+      src="/public/assets/SHOPICON.jpg"
+      alt="Shop pic"
+      style={{
+        height: '24px', // Adjust the height as needed
+        width: 'auto', // Maintain the aspect ratio
+        marginRight: '4px', // Adjust the spacing between the image and text
+      }}
+    />
+  </NavLink>
+</Tooltip>
             <Tooltip title={"Preorder"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
               <NavLink
                 to='/preorder'
                 activeClassName="selectedLink"
                 className="navLink"
                 style={{
-                  color: 'limegreen',
-                  padding: '0.5rem',  // Adjust padding as needed
-                  textDecoration: 'none',  // Remove underline
-                }}
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+              }}
               >
-                Pre-Order
-              </NavLink>
-            </Tooltip>
+               <img
+              src="/public/assets/PRE-ORDERICON.jpg"
+              alt="PreOrder pic"
+              style={{
+               height: '24px', // Adjust the height as needed
+               width: 'auto', // Maintain the aspect ratio
+              marginRight: '4px', // Adjust the spacing between the image and text
+                    }}
+              />
+    
+          </NavLink>
+          </Tooltip>
+          <Tooltip title={"Playlist"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
+              <NavLink
+                to='/preorder'
+                activeClassName="selectedLink"
+                className="navLink"
+                style={{
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+              }}
+              >
+               <img
+              src="/public/assets/PLAYLISTICON.jpg"
+              alt="PreOrder pic"
+              style={{
+               height: '24px', // Adjust the height as needed
+               width: 'auto', // Maintain the aspect ratio
+              marginRight: '4px', // Adjust the spacing between the image and text
+                    }}
+              />
+    
+          </NavLink>
+          </Tooltip>
+          <Tooltip title={"Contact"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
+              <NavLink
+                to='/preorder'
+                activeClassName="selectedLink"
+                className="navLink"
+                style={{
+                display: 'flex',
+                alignItems: 'center',
+                textDecoration: 'none',
+              }}
+              >
+               <img
+              src="/public/assets/CONTACTICON.jpg"
+              alt="PreOrder pic"
+              style={{
+               height: '24px', // Adjust the height as needed
+               width: 'auto', // Maintain the aspect ratio
+              marginRight: '4px', // Adjust the spacing between the image and text
+                    }}
+              />
+    
+          </NavLink>
+          </Tooltip>
           </Box>
         </Box>
 
