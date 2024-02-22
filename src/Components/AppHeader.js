@@ -117,7 +117,7 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
           </Tooltip>
           <Tooltip title={"Contact"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
               <NavLink
-                to='/preorder'
+                to='/contact'
                 activeClassName="selectedLink"
                 className="navLink"
                 style={{

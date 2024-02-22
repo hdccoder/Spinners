@@ -15,6 +15,7 @@ import SingleProduct from './Components/SingleProduct';
 import Bio from './Components/Bio';
 import PreOrdersButton from './Components/PreOrdersButton';
 import Preorder from './Components/Preorder';
+import ContactUsForm from './Components/ContactUsForm';
 
 const Home = ({ user , setUser }) => {
 
@@ -167,6 +168,7 @@ const Home = ({ user , setUser }) => {
                updateProduct={updateProduct}
               />}
               />
+               <Route path='/contact' element={<ContactUsForm/>}/>
                  
                \
                   { auth.id  &&
