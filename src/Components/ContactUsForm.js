@@ -1,5 +1,34 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Grid, TextField, Button, Paper, InputLabel } from '@mui/material';
+import { styled } from '@mui/system';
+
+const ContactContainer = styled(Paper)(({ theme }) => ({
+  backgroundImage: 'url("/public/assets/CONTACTPG1.jpg")',
+  backgroundSize: '100% 100%',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+
+const TransparentTextField = styled(TextField)(({ theme }) => ({
+  backgroundColor: 'rgba(255, 255, 255, 0.3)',
+}));
+
+const ContactFormContainer = styled(Paper)(({ theme }) => ({
+  backgroundColor: 'rgba(255, 255, 255, 0.7)', // Transparent white (adjust the last value for opacity)
+  padding: theme.spacing(4),
+  width: '40%',
+  marginLeft: theme.spacing(-70),
+  marginTop: theme.spacing(40),
+}));
+
+const TransparentInputLabel = styled(InputLabel)(({ theme }) => ({
+  color: 'black',
+}));
 
 const ContactUsForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -10,45 +39,57 @@ const ContactUsForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <h2>Does our selection have your head spinning? Well, ring our bell!</h2>
-        
-        <div>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            {...register('name', { required: 'Name is required' })}
-            style={{ width: '300px' }}
-          />
-          {errors.name && <p>{errors.name.message}</p>}
-        </div>
+    <ContactContainer>
+      <ContactFormContainer elevation={3}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <TransparentInputLabel htmlFor="name">Name</TransparentInputLabel>
+              <TransparentTextField
+                id="name"
+                variant="outlined"
+                fullWidth
+                {...register('name', { required: 'Name is required' })}
+                error={!!errors.name}
+                helperText={errors.name?.message}
+              />
+            </Grid>
 
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            {...register('email', { required: 'Email is required', pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' } })}
-            style={{ width: '300px' }}
-         />
-          {errors.email && <p>{errors.email.message}</p>}
-        </div>
+            <Grid item xs={12}>
+              <TransparentInputLabel htmlFor="email">Email</TransparentInputLabel>
+              <TransparentTextField
+                id="email"
+                variant="outlined"
+                fullWidth
+                {...register('email', { required: 'Email is required', pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' } })}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+              />
+            </Grid>
 
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <label htmlFor="message" style={{ marginBottom: '5px' }}>Message:</label>
-          {errors.message && <p>{errors.message.message}</p>}
-          <textarea
-            id="message"
-            {...register('message', { required: 'Message is required' })}
-            style={{ height: '200px', width: '600px', marginTop: '5px', resize: 'none' }}
-          />
-        </div>
-      </div>
+            <Grid item xs={12}>
+              <TransparentInputLabel htmlFor="message">Message</TransparentInputLabel>
+              <TransparentTextField
+                id="message"
+                variant="outlined"
+                multiline
+                rows={4}
+                fullWidth
+                {...register('message', { required: 'Message is required' })}
+                error={!!errors.message}
+                helperText={errors.message?.message}
+              />
+            </Grid>
 
-      <button type="submit">Submit</button>
-    </form>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </ContactFormContainer>
+    </ContactContainer>
   );
 };
 
