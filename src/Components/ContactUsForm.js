@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Paper, InputLabel } from '@mui/material';
 import { styled } from '@mui/system';
 
+
+
 const ContactContainer = styled(Paper)(({ theme }) => ({
   backgroundImage: 'url("/public/assets/CONTACTPG1.jpg")',
   backgroundSize: '100% 100%',
@@ -19,7 +21,7 @@ const TransparentTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const ContactFormContainer = styled(Paper)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.7)', // Transparent white (adjust the last value for opacity)
+  backgroundColor: 'rgba(255, 255, 255, 0.7)',
   padding: theme.spacing(4),
   width: '40%',
   marginLeft: theme.spacing(-70),
@@ -30,13 +32,18 @@ const TransparentInputLabel = styled(InputLabel)(({ theme }) => ({
   color: 'black',
 }));
 
-const ContactUsForm = () => {
+const ContactUsForm = ({ onSubmit }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const onSubmit = (data) => {
-    // Handle form submission logic here
-    console.log(data);
+  const handleFormSubmit = async (data) => {
+    try {
+      await onSubmit(data);
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      // Handle the error or display an error message to the user
+    }
   };
+
 
   return (
     <ContactContainer>

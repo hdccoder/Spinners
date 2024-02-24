@@ -58,7 +58,18 @@ const Home = ({ user , setUser }) => {
     }
   }, [auth]);
     
-    
+  const onContactFormSubmit = async (data) => {
+    try {
+      // Use the submitContactForm function from your API file
+      await api.submitContactForm(data);
+      console.log('Contact form submitted successfully!');
+      // Add any additional logic or navigation after successful submission
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      // Handle the error or display an error message to the user
+    }
+  };  
+
   const createLineItem = async(product)=> {
     await api.createLineItem({ product, cart, lineItems, setLineItems});
   };
@@ -168,7 +179,7 @@ const Home = ({ user , setUser }) => {
                updateProduct={updateProduct}
               />}
               />
-               <Route path='/contact' element={<ContactUsForm/>}/>
+               <Route path='/contact' element={<ContactUsForm onSubmit={onContactFormSubmit} />} />
                  
                \
                   { auth.id  &&

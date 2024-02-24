@@ -83,6 +83,18 @@ const attemptLoginWithToken = async (setAuth) => {
   }
 };
 
+const submitContactForm = async (formData) => {
+  try {
+    // Replace 'https://your-backend-api.com/contact' with the actual endpoint for your contact form
+    const response = await axios.post('/api/contacts', formData, getHeaders());
+    return response.data; // Return the data if needed
+  } catch (error) {
+    console.error('Error submitting contact form:', error);
+    throw error; // Rethrow the error if needed
+  }
+};
+
+
 // const createPreorder = async ({ product, cart, lineItems, setLineItems }) => {
 //   try {
 //     // Check if 'cart' is defined and has an 'id' property
@@ -128,6 +140,8 @@ const api = {
   removeFromCart,
   updateProduct,
   attemptLoginWithToken,
+  submitContactForm
+  
 };
 
 export default api;
