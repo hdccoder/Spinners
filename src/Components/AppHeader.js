@@ -94,7 +94,7 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
           </Tooltip>
           <Tooltip title={"Playlist"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
               <NavLink
-                to='/preorder'
+                to='/playlist'
                 activeClassName="selectedLink"
                 className="navLink"
                 style={{

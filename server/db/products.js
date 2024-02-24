@@ -14,8 +14,8 @@ const fetchProducts = async () => {
 
 const createProduct = async (product) => {
   const SQL = `
-    INSERT INTO products (id, name, price, title, image, category, is_preorder) 
-    VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *
+    INSERT INTO products (id, name, price, title, image, category, genre, is_preorder) 
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *
   `;
   const response = await client.query(SQL, [
     uuidv4(),
@@ -24,6 +24,7 @@ const createProduct = async (product) => {
     product.title,
     product.image,
     product.category || 'regular',
+    product.genre,  
     product.is_preorder || false
   ]);
   return response.rows[0];
@@ -32,8 +33,8 @@ const createProduct = async (product) => {
 const updateProduct = async (product) => {
   const SQL = `
     UPDATE products
-    SET name = $1, price = $2, title = $3, image = $4, category = $5, is_preorder = $6
-    WHERE id = $7
+    SET name = $1, price = $2, title = $3, image = $4, category = $5, genre = $6, is_preorder = $7
+    WHERE id = $8
     RETURNING *
   `;
   const response = await client.query(SQL, [
@@ -42,6 +43,7 @@ const updateProduct = async (product) => {
     product.title,
     product.image,
     product.category,
+    product.genre,
     product.is_preorder,
     product.id
   ]);

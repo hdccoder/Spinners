@@ -58,9 +58,27 @@ const updateOrder = async ({ order, setOrders }) => {
   setOrders(response.data);
 };
 
+// const updateProduct = async ({ product, products, setProducts }) => {
+//   const response = await axios.put(`/api/products/${product.id}`, product, getHeaders());
+//   setProducts(products.map(product => product.id === response.data.id ? response.data : product));
+// };
+
 const updateProduct = async ({ product, products, setProducts }) => {
-  const response = await axios.put(`/api/products/${product.id}`, product, getHeaders());
-  setProducts(products.map(product => product.id === response.data.id ? response.data : product));
+  const response = await axios.put(
+    `/api/products/${product.id}`,
+    {
+      name: product.name,
+      price: product.price,
+      title: product.title,
+      image: product.image,
+      category: product.category,
+      genre: product.genre, // Add the genre field here
+      is_preorder: product.is_preorder,
+    },
+    getHeaders()
+  );
+
+  setProducts(products.map((p) => (p.id === response.data.id ? response.data : p)));
 };
 
 const removeFromCart = async ({ lineItem, lineItems, setLineItems }) => {

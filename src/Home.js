@@ -16,6 +16,7 @@ import Bio from './Components/Bio';
 import PreOrdersButton from './Components/PreOrdersButton';
 import Preorder from './Components/Preorder';
 import ContactUsForm from './Components/ContactUsForm';
+import GenrePage from './Components/GenrePage';
 
 const Home = ({ user , setUser }) => {
 
@@ -179,7 +180,16 @@ const Home = ({ user , setUser }) => {
                updateProduct={updateProduct}
               />}
               />
-               <Route path='/contact' element={<ContactUsForm onSubmit={onContactFormSubmit} />} />
+                  <Route path='/playlist' element={<GenrePage
+                products={products}
+                cartItems={cartItems}
+                createLineItem={createLineItem}
+                updateLineItem={updateLineItem}
+                auth={auth}
+                updateProduct={updateProduct}
+              />} />
+              
+              <Route path='/contact' element={<ContactUsForm onSubmit={onContactFormSubmit} />} />
                  
                \
                   { auth.id  &&

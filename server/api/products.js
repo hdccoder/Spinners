@@ -26,7 +26,7 @@ app.get('/:id', async (req, res, next) => {
 
 app.put('/:id', isLoggedIn, isAdmin, async (req, res, next) => {
   try {
-    // Update product information
+    // Update product information, including the genre
     const updatedProduct = await updateProduct({ id: req.params.id, ...req.body });
     res.send(updatedProduct);
   } catch (ex) {

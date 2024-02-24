@@ -67,6 +67,7 @@ const seed = async()=> {
       title VARCHAR(100),
       image TEXT,
       category VARCHAR(50) DEFAULT 'regular' NOT NULL,
+      genre VARCHAR(50), 
       is_preorder BOOLEAN DEFAULT false NOT NULL
     );
 
@@ -128,18 +129,18 @@ const seed = async()=> {
 
 
   let [foo, bar, bazz] = await Promise.all([
-    createProduct({ name: 'Silk Sonic', price: 26.99, title: 'An Evening With Silk Sonic', image: V1Image, category: 'regular' }),
-    createProduct({ name: 'Ray Charles', price: 36.99, title: 'Now Playing', image: V2Image, category: 'regular' }),
-    createProduct({ name: 'DOORS', price: 30.00, title: 'Alive She Cried (40TH ANNIVERSARY)', image: V3Image, category: 'regular' }),
-    createProduct({ name: 'Aretha Franklin', price: 149.98, title: 'A Portrait Of The Queen', image: V4Image, category: 'regular' }),
-    createProduct({ name: 'Blues Traveler', price: 16.98, title: 'Live And Acoustic Fall of 1997', image: V5Image, category: 'regular' }),
-    createProduct({ name: 'Paul McCartney', price: 37.99, title: 'Tug Of War', image: V6Image, category: 'regular' }),
-    createProduct({ name: 'Leon Bridges', price: 22.99, title: 'Good Thing', image: V7Image, category: 'preorder', is_preorder: true }),
-    createProduct({ name: 'Billy Joel', price: 28.98, title: 'StreetLife Serenade', image: V8Image, category: 'preorder', is_preorder: true }),
-    createProduct({ name: 'Beyonce', price: 54.98, title: 'HOMECOMING: The Live Album', image: V9Image, category: 'preorder', is_preorder: true }),
-    createProduct({ name: 'Tasian, Aaron Lee', price: 27.98, title: 'Stellar Evolution', image: V10Image, category: 'preorder', is_preorder: true }),
-    createProduct({ name: 'Maggie Rogers', price: 29.99, title: "Don't Forget Me Evergreen", image: V11Image, category: 'preorder', is_preorder: true }),
-    createProduct({ name: 'B.T.EXPRESS', price: 35.98, title: 'DO IT TIL YOU\'RE SATISFIED', image: V12Image, category: 'preorder', is_preorder: true }),
+    createProduct({ name: 'Silk Sonic', price: 26.99, title: 'An Evening With Silk Sonic', image: V1Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Ray Charles', price: 36.99, title: 'Now Playing', image: V2Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'DOORS', price: 30.00, title: 'Alive She Cried (40TH ANNIVERSARY)', image: V3Image, category: 'regular', genre: 'Rock' }),
+    createProduct({ name: 'Aretha Franklin', price: 149.98, title: 'A Portrait Of The Queen', image: V4Image, category: 'regular', genre: 'R&B' }),
+    createProduct({ name: 'Blues Traveler', price: 16.98, title: 'Live And Acoustic Fall of 1997', image: V5Image, category: 'regular', genre: 'Rock' }),
+    createProduct({ name: 'Paul McCartney', price: 37.99, title: 'Tug Of War', image: V6Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'Leon Bridges', price: 22.99, title: 'Good Thing', image: V7Image, category: 'preorder', is_preorder: true , genre: 'R&B' }),
+    createProduct({ name: 'Billy Joel', price: 28.98, title: 'StreetLife Serenade', image: V8Image, category: 'preorder', is_preorder: true ,  genre: 'Rock'}),
+    createProduct({ name: 'Beyonce', price: 54.98, title: 'HOMECOMING: The Live Album', image: V9Image, category: 'preorder', is_preorder: true,  genre: 'Pop' }),
+    createProduct({ name: 'Tasian, Aaron Lee', price: 27.98, title: 'Stellar Evolution', image: V10Image, category: 'preorder', is_preorder: true , genre: 'Rock' }),
+    createProduct({ name: 'Maggie Rogers', price: 29.99, title: "Don't Forget Me Evergreen", image: V11Image, category: 'preorder', is_preorder: true, genre: 'Indie-Pop'  }),
+    createProduct({ name: 'B.T.EXPRESS', price: 35.98, title: 'DO IT TIL YOU\'RE SATISFIED', image: V12Image, category: 'preorder', is_preorder: true , genre: 'Soul' }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
