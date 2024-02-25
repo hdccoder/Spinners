@@ -126,6 +126,12 @@ const seed = async()=> {
   const V10Image = await loadImage('images/AARONLEE.jpeg')
   const V11Image = await loadImage('images/MaggieRodgers.jpeg')
   const V12Image = await loadImage('images/B.T.Express.jpeg')
+  const V13Image = await loadImage('images/Brandy.jpg')
+  const V14Image = await loadImage('images/UsherConfessions.jpeg')
+  const V15Image = await loadImage('images/Alicia.jpg')
+  const V16Image = await loadImage('images/MaxwellNow.jpeg')
+  const V17Image = await loadImage('images/Boyz.jpg')
+  const V18Image = await loadImage('images/LaurynHill.jpg')
 
 
   let [foo, bar, bazz] = await Promise.all([
@@ -141,6 +147,12 @@ const seed = async()=> {
     createProduct({ name: 'Tasian, Aaron Lee', price: 27.98, title: 'Stellar Evolution', image: V10Image, category: 'preorder', is_preorder: true , genre: 'Rock' }),
     createProduct({ name: 'Maggie Rogers', price: 29.99, title: "Don't Forget Me Evergreen", image: V11Image, category: 'preorder', is_preorder: true, genre: 'Indie-Pop'  }),
     createProduct({ name: 'B.T.EXPRESS', price: 35.98, title: 'DO IT TIL YOU\'RE SATISFIED', image: V12Image, category: 'preorder', is_preorder: true , genre: 'Soul' }),
+    createProduct({ name: 'Brandy', price: 49.99, title: 'Never Say Never - Ltd Clear Edition', image: V13Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Usher', price: 239.94, title: 'Confessions', image: V14Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Alicia Keys', price: 32.98, title: 'The Diary Of Alicia Keys', image: V15Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Maxwell', price: 32.98, title: 'Now', image: V16Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Boyz II Men', price: 109.99, title: 'Legacy (Greatest Hits Collection) - Exclusive Limited Edition Purple Colored 2x Vinyl LP', image: V17Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Lauryn Hill', price: 58.99, title: 'The Miseducation Of Lauryn Hill', image: V18Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
@@ -157,8 +169,8 @@ const seed = async()=> {
   await Promise.all([
   createReview({title:'Best Vinyl Store', comments: 'I am a Vinyl Club member and Proud to be, Spinners is more than a store it is a Community.',ratings : 5,product_id: foo.id}),
   createReview({ title:'Awesome',comments: 'Somehow they always have the records noone else has.',ratings : 5,product_id: foo.id }),
-    createReview({ title:'The Sound, The Quailty, The Culture',comments: 'If your looking for an amazing experience you have come to the right place, there is always good vibes at Spinners one of the best place in the City.',ratings : 5,product_id: bar.id }),
-    createReview({ title:'I love this place',comments: 'I love the Thursdays here and they really have the BEST events for Vinyl lovers.',ratings : 5 ,product_id: bazz.id}),
+  createReview({ title:'The Sound, The Quailty, The Culture',comments: 'If your looking for an amazing experience you have come to the right place, there is always good vibes at Spinners one of the best place in the City.',ratings : 5,product_id: bar.id }),
+  createReview({ title:'I love this place',comments: 'I love the Thursdays here and they really have the BEST events for Vinyl lovers.',ratings : 5 ,product_id: bazz.id}),
 ])
 };
 
