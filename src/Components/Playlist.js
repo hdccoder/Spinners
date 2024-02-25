@@ -1,32 +1,31 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useParams } from 'react-router-dom';
 import { Typography, Grid } from '@mui/material';
 import ProductCard from './ProductCard';
 
-const Playlist = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
-  const [searchParams, setSearchParams] = useSearchParams({});
-  const genre = searchParams.get('genre') || 'Soul'; // Default to 'Soul' if no genre parameter
+const Playlist = ({ genre, products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+  
+    console.log('Genre in Playlist:', genre);
+    console.log('Products in Playlist:', products);
+  
 
-  return (
-    <div>
-      <Typography variant="h4" gutterBottom>
-        {genre} Playlist
-      </Typography>
-      <input
-        placeholder='search'
-        value={searchParams.get('search') || ''}
-        onChange={(ev) => {
-          setSearchParams(ev.target.value ? { ...searchParams, search: ev.target.value } : {});
-        }}
-      />
-      <Grid container spacing={2}>
-        {products
-          .filter(
-            (product) =>
-              (!searchParams.get('search') || product.name.indexOf(searchParams.get('search')) !== -1) &&
-              product.genre === genre
-          )
-          .map((product) => {
+  
+    const filteredProducts = products
+      .filter(
+        (product) =>
+          (!searchParams.get('search') || product.name.toLowerCase().includes(searchParams.get('search').toLowerCase())) &&
+          (!genre || product.genre === genre)
+      );
+  
+    return (
+      <div>
+        <Typography variant="h4" gutterBottom>
+          {genre} Playlist
+        </Typography>
+        {/* ... (search bar) */}
+        <Grid container spacing={2}>
+          {filteredProducts.map((product) => {
             const cartItem = cartItems.find((lineItem) => lineItem.product_id === product.id);
             return (
               <Grid item key={product.id}>
@@ -42,9 +41,9 @@ const Playlist = ({ products, cartItems, createLineItem, updateLineItem, auth, u
               </Grid>
             );
           })}
-      </Grid>
-    </div>
-  );
-};
-
-export default Playlist;
+        </Grid>
+      </div>
+    );
+  };
+  
+  export default Playlist;

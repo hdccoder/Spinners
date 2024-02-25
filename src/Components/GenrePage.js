@@ -1,27 +1,29 @@
 import React from 'react';
-import { useSearchParams, useParams } from 'react-router-dom';
-import { Typography, Grid } from '@mui/material';
-import ProductCard from './ProductCard';
+import { useParams } from 'react-router-dom';
+import { Box } from '@mui/material';
 import Playlist from './Playlist';
 
 const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
-  const { genre } = useParams(); // Get the genre from URL parameters
-  const [searchParams, setSearchParams] = useSearchParams({});
-  const genres = ['Soul', 'Pop', 'R&B'];
+    const { genre } = useParams();
+    const genres = ['Soul', 'Pop', 'R&B', 'Rock'];
+  
+    console.log('Current Genre in GenrePage:', genre);
+    console.log('Products in GenrePage:', products);
 
   return (
     <div>
-      {genres.map((genre) => (
-        <Playlist
-          key={genre}
-          genre={genre}  // Pass the genre prop
-          products={products}
-          cartItems={cartItems}
-          createLineItem={createLineItem}
-          updateLineItem={updateLineItem}
-          auth={auth}
-          updateProduct={updateProduct}
-        />
+      {genres.map((genreItem) => (
+        <Box key={genreItem} mb={4}>
+          <Playlist
+            genre={genreItem}
+            products={products}
+            cartItems={cartItems}
+            createLineItem={createLineItem}
+            updateLineItem={updateLineItem}
+            auth={auth}
+            updateProduct={updateProduct}
+          />
+        </Box>
       ))}
     </div>
   );

@@ -180,14 +180,19 @@ const Home = ({ user , setUser }) => {
                updateProduct={updateProduct}
               />}
               />
-                  <Route path='/playlist' element={<GenrePage
-                products={products}
-                cartItems={cartItems}
-                createLineItem={createLineItem}
-                updateLineItem={updateLineItem}
-                auth={auth}
-                updateProduct={updateProduct}
-              />} />
+                   <Route
+          path="/playlist/*"
+          element={
+            <GenrePage
+              products={products}
+              cartItems={cartItems}
+              createLineItem={createLineItem}
+              updateLineItem={updateLineItem}
+              auth={auth}
+              updateProduct={updateProduct}
+            />
+          }
+        />
               
               <Route path='/contact' element={<ContactUsForm onSubmit={onContactFormSubmit} />} />
                  
