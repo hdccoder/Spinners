@@ -132,6 +132,19 @@ const seed = async()=> {
   const V16Image = await loadImage('images/MaxwellNow.jpeg')
   const V17Image = await loadImage('images/Boyz.jpg')
   const V18Image = await loadImage('images/LaurynHill.jpg')
+  const V19Image = await loadImage('images/MariahCarey.jpg')
+  const V20Image = await loadImage('images/DanielCaesar.jpg')
+  const V21Image = await loadImage('images/Sza.jpg')
+  const V22Image = await loadImage('images/JanetJackson.jpg')
+  const V23Image = await loadImage('images/Khalid1.jpg')
+  const V24Image = await loadImage('images/Beyonce.jpg')
+  const V25Image = await loadImage('images/Giveon.jpg')
+  const V26Image = await loadImage('images/MichaelJackson.jpg')
+  const V27Image = await loadImage('images/LadyGaga.jpg')
+  const V28Image = await loadImage('images/Madonna.jpg')
+  const V29Image = await loadImage('images/NSYNC.jpg')
+
+
 
 
   let [foo, bar, bazz] = await Promise.all([
@@ -153,6 +166,17 @@ const seed = async()=> {
     createProduct({ name: 'Maxwell', price: 32.98, title: 'Now', image: V16Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
     createProduct({ name: 'Boyz II Men', price: 109.99, title: 'Legacy (Greatest Hits Collection) - Exclusive Limited Edition Purple Colored 2x Vinyl LP', image: V17Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
     createProduct({ name: 'Lauryn Hill', price: 58.99, title: 'The Miseducation Of Lauryn Hill', image: V18Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Mariah Carey', price: 99.99, title: 'Music Box: 30th Anniversary Expanded Edition', image: V19Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Daniel Caesar', price: 56.99, title: 'Freudian Exclusive Tan with White Splatter Colored Vinyl', image: V20Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'SZA', price: 21.95, title: 'Ctrl', image: V21Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Janet Jackson', price: 516.95, title: 'Design of a Decade: 1986-1996', image: V22Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Khalid', price: 21.97, title: 'Free Spirit', image: V23Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'BEYONCE', price: 250.99, title: 'Dangerously In Love', image: V24Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Giveon', price: 45.94, title: 'Give Or Take', image: V25Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Michael Jackson', price: 346.97, title: 'Thriller', image: V26Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Lady Gaga', price: 37.99, title: 'Joanne', image: V27Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Madonna', price: 47.94, title: 'True Blue The Silver Collection', image: V28Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'NYSNC', price: 245.9, title: 'Greatest Hits', image: V29Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
