@@ -143,8 +143,14 @@ const seed = async()=> {
   const V27Image = await loadImage('images/LadyGaga.jpg')
   const V28Image = await loadImage('images/Madonna.jpg')
   const V29Image = await loadImage('images/NSYNC.jpg')
-
-
+  const V30Image = await loadImage('images/JonasBrothers.jpeg')
+  const V31Image = await loadImage('images/DuaLipa.jpeg')
+  const V32Image = await loadImage('images/CamilaCabello.jpeg')
+  const V33Image = await loadImage('images/Rihanna .jpeg')
+  const V34Image = await loadImage('images/DojaCat.jpeg')
+  const V35Image = await loadImage('images/Justin Bieber.jpeg')
+  const V36Image = await loadImage('images/JazmineSullivan.jpeg')
+  const V37Image = await loadImage('images/EDSHEERAN.jpeg')
 
 
   let [foo, bar, bazz] = await Promise.all([
@@ -176,7 +182,15 @@ const seed = async()=> {
     createProduct({ name: 'Michael Jackson', price: 346.97, title: 'Thriller', image: V26Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
     createProduct({ name: 'Lady Gaga', price: 37.99, title: 'Joanne', image: V27Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
     createProduct({ name: 'Madonna', price: 47.94, title: 'True Blue The Silver Collection', image: V28Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
-    createProduct({ name: 'NYSNC', price: 245.9, title: 'Greatest Hits', image: V29Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'NYSNC', price: 245.99, title: 'Greatest Hits', image: V29Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Jonas Brothers', price: 32.99, title: 'Happiness Begins Vinyl LP', image: V30Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Dua Lipa', price: 24.98, title: 'Future Nostalgia Vinyl LP', image: V31Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Camila Cabello', price: 23.98, title: 'Familia', image: V32Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Rihanna', price: 35.98, title: 'ANTI VINYL LP', image: V33Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Doja Cat', price: 30.98, title: 'Planet Her', image: V34Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Justin Bieber', price: 32.99, title: 'Purpose', image: V35Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'Jazmine Sullivan', price: 20.98, title: 'HEAUX TALES VINYL LP', image: V36Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
+    createProduct({ name: 'Ed Sheeran', price: 34.98, title: 'COLLABORATIONS PROJECT VINYL LP', image: V37Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
