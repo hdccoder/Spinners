@@ -164,6 +164,13 @@ const seed = async()=> {
   const V48Image = await loadImage('images/StevieWonder.jpg')
   const V49Image = await loadImage('images/BillieHoliday.jpg')
   const V50Image = await loadImage('images/LuckyDaye.jpg')
+  const V51Image = await loadImage('images/Aerosmith.jpg')
+  const V52Image = await loadImage('images/RHC.jpg')
+  const V53Image = await loadImage('images/NIRVANA.jpg')
+  const V54Image = await loadImage('images/FooFighters.jpg')
+  const V55Image = await loadImage('images/PF.jpg')
+  const V56Image = await loadImage('images/Paramore.jpg')
+  const V57Image = await loadImage('images/Coldplay.jpg')
 
   let [foo, bar, bazz] = await Promise.all([
     createProduct({ name: 'Silk Sonic', price: 26.99, title: 'An Evening With Silk Sonic', image: V1Image, category: 'regular', genre: 'Soul'  }),
@@ -216,6 +223,13 @@ const seed = async()=> {
     createProduct({ name: 'Stevie Wonder', price: 34.99, title: 'Songs in the Key of Life', image: V48Image, category: 'regular', genre: 'Soul'  }),
     createProduct({ name: 'Billie Holiday', price: 36.99, title: 'Lady Sings the Blues', image: V49Image, category: 'regular', genre: 'Soul'  }),
     createProduct({ name: 'Lucky Daye', price: 22.99, title: 'Painted', image: V50Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Aerosmith', price: 27.98, title: 'Greatest Hits', image: V51Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'RED HOT CHILLI PEPPERS', price: 27.98, title: 'Greatest Hits', image: V52Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'NIRVANA', price: 29.99, title: 'Nevermind', image: V53Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'Foo Fighters', price: 38.96, title: 'The Essential Foo Fighters', image: V54Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'Pink Floyd', price: 47.99, title: 'The Dark Side Of The Moon (50th Anniversary Remaster) (UV Edition)', image: V55Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'Paramore', price: 24.98, title: 'After Laughter', image: V56Image, category: 'regular',  genre: 'Rock' }),
+    createProduct({ name: 'Coldplay', price: 42.99, title: 'Viva la Vida', image: V57Image, category: 'regular',  genre: 'Rock' }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
