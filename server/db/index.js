@@ -151,7 +151,19 @@ const seed = async()=> {
   const V35Image = await loadImage('images/Justin Bieber.jpeg')
   const V36Image = await loadImage('images/JazmineSullivan.jpeg')
   const V37Image = await loadImage('images/EDSHEERAN.jpeg')
-
+  const V38Image = await loadImage('images/Her.jpg')
+  const V39Image = await loadImage('images/AnitaBaker.jpg')
+  const V40Image = await loadImage('images/MarvinGaye.jpg')
+  const V41Image = await loadImage('images/EttaJames.jpg')
+  const V42Image = await loadImage('images/AlGreen.jpg')
+  const V43Image = await loadImage('images/Sade.jpg')
+  const V44Image = await loadImage('images/James Brown.jpg')
+  const V45Image = await loadImage('images/India Arie.jpeg')
+  const V46Image = await loadImage('images/JAMESBROWN.jpg')
+  const V47Image = await loadImage('images/NinaSimone.jpg')
+  const V48Image = await loadImage('images/StevieWonder.jpg')
+  const V49Image = await loadImage('images/BillieHoliday.jpg')
+  const V50Image = await loadImage('images/LuckyDaye.jpg')
 
   let [foo, bar, bazz] = await Promise.all([
     createProduct({ name: 'Silk Sonic', price: 26.99, title: 'An Evening With Silk Sonic', image: V1Image, category: 'regular', genre: 'Soul'  }),
@@ -191,6 +203,19 @@ const seed = async()=> {
     createProduct({ name: 'Justin Bieber', price: 32.99, title: 'Purpose', image: V35Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
     createProduct({ name: 'Jazmine Sullivan', price: 20.98, title: 'HEAUX TALES VINYL LP', image: V36Image, category: 'regular', is_preorder: false , genre: 'R&B' }),
     createProduct({ name: 'Ed Sheeran', price: 34.98, title: 'COLLABORATIONS PROJECT VINYL LP', image: V37Image, category: 'regular', is_preorder: false , genre: 'Pop' }),
+    createProduct({ name: 'H.E.R', price: 23.99, title: 'H.E.R', image: V38Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Anita Baker', price: 59.99, title: 'Rapture', image: V39Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Marvin Gaye', price: 27.97, title: 'Whats Going On', image: V40Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Etta James', price: 24.43, title: 'At Last!', image: V41Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Al Green', price: 24.26, title: 'Lets Stay Together', image: V42Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Sade', price: 34.96, title: 'The Best of Sade', image: V43Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'James Brown', price: 24.26, title: 'Live At The Apollo', image: V44Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'India Arie', price: 20.26, title: 'Acoustic Soul', image: V45Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'JAMES BROWN', price: 26.35, title: 'GREATEST', image: V46Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Nina Simone', price: 29.99, title: 'I Put A Spell On You', image: V47Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Stevie Wonder', price: 34.99, title: 'Songs in the Key of Life', image: V48Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Billie Holiday', price: 36.99, title: 'Lady Sings the Blues', image: V49Image, category: 'regular', genre: 'Soul'  }),
+    createProduct({ name: 'Lucky Daye', price: 22.99, title: 'Painted', image: V50Image, category: 'regular', genre: 'Soul'  }),
   ]);
 
   bazz = await updateProduct({...bazz, image: V3Image})
