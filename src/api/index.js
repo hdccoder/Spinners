@@ -26,6 +26,27 @@ const addProductReview = async (review, productId) => {
     getHeaders());
 };
 
+//fetch all wishlist items for a user
+const fetchWishlistItems = async (setWishlistItems) => {
+  const response = await axios.get('/api/wishlist', getHeaders())
+  setWishlistItems(response.data)
+};
+
+//add product to a users wishlist
+const createWishlistItem = async (user, product, wishlistItems, setWishlistItems) => {
+  const response = await axios.post(`/api/wishlist`, {
+    user_id: user.id,
+    product_id: product.id
+  }, getHeaders());
+  setWishlistItems([...wishlistItems, response.data])
+};
+
+//delete a product from a users wishlist
+const deleteWishlistItem = async (product, wishlistItems, setWishlistItems) => {
+  const response = await axios.delete(`/api/wishlist/${product.id}`, getHeaders());
+  setWishlistItems(wishlistItems.filter(_wishlistItem => _wishlistItem.product_id !== product.id));
+};
+
 const fetchOrders = async (setOrders) => {
   const response = await axios.get('/api/orders', getHeaders());
   setOrders(response.data);
@@ -158,7 +179,10 @@ const api = {
   removeFromCart,
   updateProduct,
   attemptLoginWithToken,
-  submitContactForm
+  submitContactForm,
+  fetchWishlistItems,
+  createWishlistItem,
+  deleteWishlistItem,
   
 };
 

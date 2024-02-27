@@ -10,13 +10,17 @@ import {
   CardMedia,
   Grid,
   styled,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
 const ProductCard = styled(Card)({
-  width: 300, // Set a fixed width for all cards
-  height: '100%', // Set a fixed height for all cards
+  width: 300,
+  height: '100%',
   margin: '8px',
   display: 'flex',
   flexDirection: 'column',
@@ -24,11 +28,21 @@ const ProductCard = styled(Card)({
 });
 
 const ProductMedia = styled(CardMedia)({
-  height: 250, // Adjust the height of the media
-  backgroundSize: 'contain', // Make the image take up more space
+  height: 250,
+  backgroundSize: 'contain',
 });
 
-const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
+const Products = ({
+  products,
+  cartItems,
+  createLineItem,
+  updateLineItem,
+  auth,
+  updateProduct,
+  createWishlistItem,
+  deleteWishlistItem,
+  isProductInWishlist,
+}) => {
   const [searchParams, setSearchParams] = useSearchParams({});
   console.log(searchParams.get('search'));
 
@@ -36,7 +50,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
     <div>
       <h2>Shop Our Spins</h2>
       <input
-        placeholder='search'
+        placeholder="search"
         value={searchParams.get('search') || ''}
         onChange={(ev) => {
           setSearchParams(ev.target.value ? { search: ev.target.value } : {});
@@ -46,17 +60,17 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
         {products
           .filter(
             (product) =>
-              !searchParams.get('search') || product.name.indexOf(searchParams.get('search')) !== -1
+              !searchParams.get('search') ||
+              product.name.indexOf(searchParams.get('search')) !== -1
           )
           .map((product) => {
-            const cartItem = cartItems.find((lineItem) => lineItem.product_id === product.id);
+            const cartItem = cartItems.find(
+              (lineItem) => lineItem.product_id === product.id
+            );
             return (
               <Grid item key={product.id}>
                 <ProductCard>
-                  <ProductMedia
-                    image={product.image}
-                    title={product.name}
-                  />
+                  <ProductMedia image={product.image} title={product.name} />
                   <CardContent>
                     <Typography variant="h6" component="div">
                       {product.name}
@@ -70,51 +84,106 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth, u
                     {auth.id && (
                       <div>
                         {product.is_preorder ? (
-                          cartItem ? (
-                            <Button
-                              startIcon={<ShoppingCartIcon />}
-                              onClick={() => updateLineItem(cartItem)}
-                            >
-                              Add Another
-                            </Button>
-                          ) : (
-                            <Button
-                              startIcon={<AccessAlarmOutlinedIcon />}
-                              onClick={() => createLineItem(product)}
-                            >
-                              Preorder
-                            </Button>
-                          )
+                          <div>
+                            {cartItem ? (
+                              <Button
+                                startIcon={<ShoppingCartIcon />}
+                                onClick={() => updateLineItem(cartItem)}
+                              >
+                                Add Another
+                              </Button>
+                            ) : (
+                              <Button
+                                startIcon={<AccessAlarmOutlinedIcon />}
+                                onClick={() => createLineItem(product)}
+                              >
+                                Preorder
+                              </Button>
+                            )}
+                            {isProductInWishlist(product) ? (
+                              <Tooltip title="I changed my mind! Remove from Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    deleteWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip title="I want this cake someday! Add to Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    createWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteBorderRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                          </div>
                         ) : (
-                          cartItem ? (
-                            <Button
-                              startIcon={<ShoppingCartIcon />}
-                              onClick={() => updateLineItem(cartItem)}
-                            >
-                              Add Another
-                            </Button>
-                          ) : (
-                            <Button
-                              startIcon={<ShoppingCartIcon />}
-                              onClick={() => createLineItem(product)}
-                            >
-                              Add to Cart
-                            </Button>
-                          )
+                          <div>
+                            {cartItem ? (
+                              <Button
+                                startIcon={<ShoppingCartIcon />}
+                                onClick={() => updateLineItem(cartItem)}
+                              >
+                                Add Another
+                              </Button>
+                            ) : (
+                              <Button
+                                startIcon={<ShoppingCartIcon />}
+                                onClick={() => createLineItem(product)}
+                              >
+                                Add to Cart
+                              </Button>
+                            )}
+                            {isProductInWishlist(product) ? (
+                              <Tooltip title="I changed my mind! Remove from Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    deleteWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip title="I want this cake someday! Add to Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    createWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteBorderRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                          </div>
                         )}
                       </div>
                     )}
                     {auth.is_admin && (
                       <div>
                         <Link to={`/products/${product.id}/edit`}>Edit</Link>
-                        <ProductImageEditor updateProduct={updateProduct} product={product} />
+                        <ProductImageEditor
+                          updateProduct={updateProduct}
+                          product={product}
+                        />
                       </div>
                     )}
                   </CardContent>
                   <CardActions>
-                    <Link to={`/products/${product.id}`}>
-                      View Details
-                    </Link>
+                    <Link to={`/products/${product.id}`}>View Details</Link>
                   </CardActions>
                 </ProductCard>
               </Grid>

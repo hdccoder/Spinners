@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Playlist from './Playlist';
 
 const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
@@ -19,6 +19,7 @@ const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, 
         <div>
             {genres.map((genreItem) => (
                 <Box key={genreItem.name} mb={4}>
+                  
                     <Playlist
                         genre={genreItem.name}
                         genreImage={genreItem.image}

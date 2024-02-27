@@ -25,6 +25,7 @@ const Home = ({ user , setUser }) => {
   const [orders, setOrders] = useState([]);
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const attemptLoginWithToken = async()=> {
     await api.attemptLoginWithToken(setAuth);
@@ -91,6 +92,23 @@ const Home = ({ user , setUser }) => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
 
+  const isProductInWishlist = (product) => {
+    const item = wishlistItems.find((wishlistItem) => { return wishlistItem.product_id === product.id })
+    //  if item is in wishlist, return true
+    return !!item;
+  }
+
+  //create an api route to add an item to a users wishlist
+  const createWishlistItem = async (product) => {
+    await api.createWishlistItem(user, product, wishlistItems, setWishlistItems);
+  };
+
+  //create an api route to delete an item from a users wishlist
+  const deleteWishlistItem = async (wishlistItem) => {
+    await api.deleteWishlistItem(wishlistItem, wishlistItems, setWishlistItems)
+  };
+
+
   const cart = orders.find(order => order.is_cart) || {};
 
   const cartItems = lineItems.filter(lineItem => lineItem.order_id === cart.id);
@@ -150,6 +168,9 @@ const Home = ({ user , setUser }) => {
                     createLineItem = { createLineItem }
                     updateLineItem = { updateLineItem }
                     updateProduct = {updateProduct}
+                    createWishlistItem= {createWishlistItem}
+                     deleteWishlistItem= {deleteWishlistItem} 
+                     isProductInWishlist= {isProductInWishlist}
                   />
                     }
                   />

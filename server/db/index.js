@@ -28,6 +28,12 @@ const {
   fetchOrders
 } = require('./cart');
 
+const {
+  createWishlistItem,
+  fetchWishlistItems,  
+  deleteWishlistItem,
+} = require('./wishlist');
+
 const loadImage = (filePath) => {
   return new Promise((resolve, reject) => {
     const fullPath = path.join(__dirname, filePath)
@@ -44,6 +50,7 @@ const loadImage = (filePath) => {
 
 const seed = async()=> {
   const SQL = `
+    DROP TABLE IF EXISTS wishlist;
     DROP TABLE IF EXISTS line_items;
     DROP TABLE IF EXISTS reviews; 
     DROP TABLE IF EXISTS contacts;
@@ -104,6 +111,14 @@ const seed = async()=> {
       email VARCHAR(255) NOT NULL,
       message TEXT NOT NULL
     );
+
+    CREATE TABLE wishlist(
+      id UUID PRIMARY KEY,
+      user_id UUID REFERENCES users(id) NOT NULL,
+      product_id UUID REFERENCES products(id) NOT NULL,
+      CONSTRAINT user_and_product_key UNIQUE(user_id, product_id)
+    );
+
 
   `;
   await client.query(SQL);
@@ -249,13 +264,26 @@ const seed = async()=> {
   createReview({ title:'The Sound, The Quailty, The Culture',comments: 'If your looking for an amazing experience you have come to the right place, there is always good vibes at Spinners one of the best place in the City.',ratings : 5,product_id: bar.id }),
   createReview({ title:'I love this place',comments: 'I love the Thursdays here and they really have the BEST events for Vinyl lovers.',ratings : 5 ,product_id: bazz.id}),
 ])
+
+await Promise.all([
+  createWishlistItem({ user_id: moe.id, product_id: bar.id }),
+  createWishlistItem({ user_id: moe.id, product_id: bazz.id }),
+  createWishlistItem({ user_id: lucy.id, product_id: bazz.id })
+]);
+
 };
+
+ 
+
 
 module.exports = {
   fetchProducts,
   fetchOrders,
   fetchLineItems,
   fetchReviews,
+  createWishlistItem,
+  fetchWishlistItems,  
+  deleteWishlistItem,
   createLineItem,
   updateLineItem,
   deleteLineItem,
