@@ -25,7 +25,7 @@ const Playlist = ({ genre, genreImage, products, cartItems, createLineItem, upda
   };
 
   const handleButtonClick = () => {
-    setShowImage(false);
+    setShowImage(!showImage);
     setShowButton(false);
   };
 
@@ -64,9 +64,16 @@ const Playlist = ({ genre, genreImage, products, cartItems, createLineItem, upda
             variant="contained"
             color="primary"
             onClick={handleButtonClick}
-            sx={{ position: 'absolute', zIndex: 2, top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+            sx={{
+              position: 'absolute',
+              zIndex: 2,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              cursor: 'pointer',
+            }}
           >
-            Hide Image
+            {showImage ? 'Hide Image' : 'Show Image'}
           </Button>
         )}
         <Swiper
