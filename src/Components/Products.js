@@ -101,7 +101,7 @@ const Products = ({
                               </Button>
                             )}
                             {isProductInWishlist(product) ? (
-                              <Tooltip title="I changed my mind! Remove from Wishlist.">
+                              <Tooltip title="Remove from Wishlist.">
                                 <IconButton
                                   size="small"
                                   sx={{ color: 'accentPink.dark' }}
@@ -113,7 +113,7 @@ const Products = ({
                                 </IconButton>
                               </Tooltip>
                             ) : (
-                              <Tooltip title="I want this cake someday! Add to Wishlist.">
+                              <Tooltip title="Add to Wishlist.">
                                 <IconButton
                                   size="small"
                                   sx={{ color: 'accentPink.dark' }}
@@ -144,7 +144,7 @@ const Products = ({
                               </Button>
                             )}
                             {isProductInWishlist(product) ? (
-                              <Tooltip title="I changed my mind! Remove from Wishlist.">
+                              <Tooltip title="Remove from Wishlist.">
                                 <IconButton
                                   size="small"
                                   sx={{ color: 'accentPink.dark' }}
@@ -156,7 +156,7 @@ const Products = ({
                                 </IconButton>
                               </Tooltip>
                             ) : (
-                              <Tooltip title="I want this cake someday! Add to Wishlist.">
+                              <Tooltip title="Add to Wishlist.">
                                 <IconButton
                                   size="small"
                                   sx={{ color: 'accentPink.dark' }}

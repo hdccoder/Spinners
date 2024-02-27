@@ -119,7 +119,6 @@ const seed = async()=> {
       CONSTRAINT user_and_product_key UNIQUE(user_id, product_id)
     );
 
-
   `;
   await client.query(SQL);
 
