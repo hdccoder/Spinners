@@ -39,7 +39,7 @@ const Playlist = ({ genre, genreImage, products, cartItems, createLineItem, upda
   );
 
   return (
-    <Box position="relative">
+    <Box position="relative" marginLeft={10} >
       <Container
         maxWidth="xl"
         sx={{
