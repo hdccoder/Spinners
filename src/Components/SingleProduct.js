@@ -8,7 +8,16 @@ import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
-const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, auth, isAdmin, createPreorder }) => {
+const SingleProduct = ({ 
+  products, 
+  cartItems, 
+  createLineItem, 
+  updateLineItem, 
+  auth,
+  createWishlistItem,
+  deleteWishlistItem,
+  isProductInWishlist, 
+}) => {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
 
@@ -76,6 +85,32 @@ const SingleProduct = ({ products, cartItems, createLineItem, updateLineItem, au
                           <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><ShoppingCartIcon /></IconButton>
                         </Tooltip>
                       )
+                    )}
+
+                    {isProductInWishlist(selectedProduct) ? (
+                      <Tooltip title="Remove from Wishlist.">
+                        <IconButton
+                          size="small"
+                          sx={{ color: 'accentPink.dark' }}
+                          onClick={() => {
+                            deleteWishlistItem(selectedProduct);
+                          }}
+                        >
+                          <FavoriteRoundedIcon />
+                        </IconButton>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="Add to Wishlist.">
+                        <IconButton
+                          size="small"
+                          sx={{ color: 'accentPink.dark' }}
+                          onClick={() => {
+                            createWishlistItem(selectedProduct);
+                          }}
+                        >
+                          <FavoriteBorderRoundedIcon />
+                        </IconButton>
+                      </Tooltip>
                     )}
                   </Box>
 

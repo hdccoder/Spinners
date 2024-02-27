@@ -184,9 +184,9 @@ const Home = ({ user , setUser }) => {
                     cartItems={cartItems}
                     createLineItem={createLineItem}
                     updateLineItem={updateLineItem}
-                    // createWishlistItem={createWishlistItem}
-                    // deleteWishlistItem={deleteWishlistItem}
-                    // isProductInWishlist={isProductInWishlist}
+                    createWishlistItem={createWishlistItem}
+                    deleteWishlistItem={deleteWishlistItem}
+                    isProductInWishlist={isProductInWishlist}
                   />
                 }
               />
