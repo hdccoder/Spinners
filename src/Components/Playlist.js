@@ -11,7 +11,19 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-const Playlist = ({ genre, genreImage, products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
+const Playlist = ({
+  genre, 
+  genreImage, 
+  products,
+  cartItems, 
+  createLineItem, 
+  updateLineItem,
+  auth,
+  updateProduct, 
+  createWishlistItem,
+  deleteWishlistItem,
+  isProductInWishlist, 
+  }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showImage, setShowImage] = useState(true);
   const [showButton, setShowButton] = useState(false);
@@ -99,6 +111,9 @@ const Playlist = ({ genre, genreImage, products, cartItems, createLineItem, upda
                   updateLineItem={updateLineItem}
                   auth={auth}
                   updateProduct={updateProduct}
+                  createWishlistItem={createWishlistItem}
+                  deleteWishlistItem={deleteWishlistItem}
+                  isProductInWishlist={isProductInWishlist}
                 />
                 {/* ... (other card content) */}
               </SwiperSlide>

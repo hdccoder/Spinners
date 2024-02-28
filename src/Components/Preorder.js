@@ -15,7 +15,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 import ProductCard from './ProductCard';
 
-const Preorder = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
+const Preorder = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct,createWishlistItem,
+  deleteWishlistItem,
+  isProductInWishlist, }) => {
   const [searchParams, setSearchParams] = useSearchParams({});
   console.log(searchParams.get('search'));
 
@@ -46,6 +48,9 @@ const Preorder = ({ products, cartItems, createLineItem, updateLineItem, auth, u
         updateLineItem={updateLineItem}
         auth={auth} 
         updateProduct={updateProduct}
+        createWishlistItem={createWishlistItem}
+        deleteWishlistItem={deleteWishlistItem}
+        isProductInWishlist={isProductInWishlist}
         />
         {/* ... (other card content) */}
       </Grid>

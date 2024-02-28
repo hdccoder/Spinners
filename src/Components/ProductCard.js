@@ -6,9 +6,13 @@ import {
   CardActions,
   CardMedia,
   Typography,
+  IconButton,
+  Tooltip,
   Button,
   styled,
 } from '@mui/material';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
@@ -26,7 +30,10 @@ const StyledCardMedia = styled(CardMedia)({
   backgroundSize: 'contain',
 });
 
-const ProductCard = ({ product, cartItem, createLineItem, updateLineItem, auth, updateProduct }) => {
+const ProductCard = ({ product, cartItem, createLineItem, updateLineItem, auth, updateProduct,
+  createWishlistItem,
+  deleteWishlistItem,
+  isProductInWishlist, }) => {
   return (
     <StyledCard>
       <StyledCardMedia
@@ -44,42 +51,96 @@ const ProductCard = ({ product, cartItem, createLineItem, updateLineItem, auth, 
           {product.is_preorder ? 'Preorder' : 'In Stock'}
         </Typography>
         {auth.id && (
-          <div>
-            {product.is_preorder ? (
-              cartItem ? (
-                <Button
-                  startIcon={<ShoppingCartIcon />}
-                  onClick={() => updateLineItem(cartItem)}
-                >
-                  Add Another
-                </Button>
-              ) : (
-                <Button
-                  startIcon={<AccessAlarmOutlinedIcon />}
-                  onClick={() => createLineItem(product)}
-                >
-                  Preorder
-                </Button>
-              )
-            ) : (
-              cartItem ? (
-                <Button
-                  startIcon={<ShoppingCartIcon />}
-                  onClick={() => updateLineItem(cartItem)}
-                >
-                  Add Another
-                </Button>
-              ) : (
-                <Button
-                  startIcon={<ShoppingCartIcon />}
-                  onClick={() => createLineItem(product)}
-                >
-                  Add to Cart
-                </Button>
-              )
-            )}
-          </div>
-        )}
+                      <div>
+                        {product.is_preorder ? (
+                          <div>
+                            {cartItem ? (
+                              <Button
+                                startIcon={<ShoppingCartIcon />}
+                                onClick={() => updateLineItem(cartItem)}
+                              >
+                                Add Another
+                              </Button>
+                            ) : (
+                              <Button
+                                startIcon={<AccessAlarmOutlinedIcon />}
+                                onClick={() => createLineItem(product)}
+                              >
+                                Preorder
+                              </Button>
+                            )}
+                            {isProductInWishlist(product) ? (
+                              <Tooltip title="Remove from Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    deleteWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip title="Add to Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    createWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteBorderRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                          </div>
+                        ) : (
+                          <div>
+                            {cartItem ? (
+                              <Button
+                                startIcon={<ShoppingCartIcon />}
+                                onClick={() => updateLineItem(cartItem)}
+                              >
+                                Add Another
+                              </Button>
+                            ) : (
+                              <Button
+                                startIcon={<ShoppingCartIcon />}
+                                onClick={() => createLineItem(product)}
+                              >
+                                Add to Cart
+                              </Button>
+                            )}
+                            {isProductInWishlist(product) ? (
+                              <Tooltip title="Remove from Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    deleteWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            ) : (
+                              <Tooltip title="Add to Wishlist.">
+                                <IconButton
+                                  size="small"
+                                  sx={{ color: 'accentPink.dark' }}
+                                  onClick={() => {
+                                    createWishlistItem(product);
+                                  }}
+                                >
+                                  <FavoriteBorderRoundedIcon />
+                                </IconButton>
+                              </Tooltip>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
         {auth.is_admin && (
           <div>
             <Link to={`/products/${product.id}/edit`}>Edit</Link>

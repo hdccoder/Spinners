@@ -199,6 +199,9 @@ const Home = ({ user , setUser }) => {
                updateLineItem={updateLineItem} 
                auth={auth} 
                updateProduct={updateProduct}
+               createWishlistItem= {createWishlistItem}
+               deleteWishlistItem= {deleteWishlistItem} 
+               isProductInWishlist= {isProductInWishlist}
               />}
               />
                    <Route
@@ -211,6 +214,9 @@ const Home = ({ user , setUser }) => {
               updateLineItem={updateLineItem}
               auth={auth}
               updateProduct={updateProduct}
+              createWishlistItem= {createWishlistItem}
+              deleteWishlistItem= {deleteWishlistItem} 
+              isProductInWishlist= {isProductInWishlist}
             />
           }
         />

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 import Playlist from './Playlist';
 
-const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct }) => {
+const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, updateProduct, createWishlistItem, deleteWishlistItem, isProductInWishlist,  }) => {
     const { genre } = useParams();
     const genres = [
         { name: 'Soul', image: '/public/assets/Soul.jpg' },
@@ -29,6 +29,9 @@ const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, 
                         updateLineItem={updateLineItem}
                         auth={auth}
                         updateProduct={updateProduct}
+                        createWishlistItem= {createWishlistItem}
+                        deleteWishlistItem= {deleteWishlistItem} 
+                        isProductInWishlist= {isProductInWishlist}
                     />
                 </Box>
             ))}
