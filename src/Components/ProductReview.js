@@ -65,7 +65,7 @@ const ProductReview = ({ products }) => {
           <Card sx={{ display: 'flex' }}>
             <CardMedia
               sx={{ p: "1rem", width: "200px", height: "200px" }}
-              image={product.product_image ?? `https://source.unsplash.com/random/?${product.name}`}
+              image={product?.image}
               component="img"
             />
             <CardContent sx={{ display: "flex", flexDirection: "column", flexGrow: "1" }}>
@@ -73,7 +73,10 @@ const ProductReview = ({ products }) => {
                 {product?.name}
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                {product?.description}
+                {product?.title}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {product?.price}
               </Typography>
             </CardContent>
           </Card>

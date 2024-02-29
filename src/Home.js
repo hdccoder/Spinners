@@ -17,6 +17,7 @@ import PreOrdersButton from './Components/PreOrdersButton';
 import Preorder from './Components/Preorder';
 import ContactUsForm from './Components/ContactUsForm';
 import GenrePage from './Components/GenrePage';
+import ProductReview from './Components/ProductReview';
 
 const Home = ({ user , setUser }) => {
 
@@ -239,7 +240,10 @@ const Home = ({ user , setUser }) => {
                     removeFromCart = { removeFromCart }
                   />
                 }/>
-    
+                <Route
+                    path="/products/:id/review"
+                    element={<ProductReview products={products} />}
+                  />
                     
                       {/* added route for wishlist */}
                       {/* <Route

@@ -33,11 +33,22 @@ const fetchWishlistItems = async (setWishlistItems) => {
 
 //add product to a users wishlist
 const createWishlistItem = async (user, product, wishlistItems, setWishlistItems) => {
-  const response = await axios.post(`/api/wishlist`, {
-    user_id: user.id,
-    product_id: product.id
-  }, getHeaders());
-  setWishlistItems([...wishlistItems, response.data])
+  const isProductAlreadyInWishlist = wishlistItems.some((wishlistItem) => wishlistItem.product_id === product.id);
+
+  if (!isProductAlreadyInWishlist) {
+    try {
+      const response = await axios.post(`/api/wishlist`, {
+        user_id: user.id,
+        product_id: product.id,
+      }, getHeaders());
+
+      setWishlistItems([...wishlistItems, response.data]);
+    } catch (error) {
+      console.error('Error creating wishlist item:', error);
+    }
+  } else {
+    console.warn('Product is already in the wishlist');
+  }
 };
 
 //delete a product from a users wishlist
