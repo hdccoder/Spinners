@@ -8,15 +8,15 @@ import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccessAlarmOutlinedIcon from '@mui/icons-material/AccessAlarmOutlined';
 
-const SingleProduct = ({ 
-  products, 
-  cartItems, 
-  createLineItem, 
-  updateLineItem, 
+const SingleProduct = ({
+  products,
+  cartItems,
+  createLineItem,
+  updateLineItem,
   auth,
   createWishlistItem,
   deleteWishlistItem,
-  isProductInWishlist, 
+  isProductInWishlist,
 }) => {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
@@ -68,58 +68,58 @@ const SingleProduct = ({
                 {selectedProduct?.vip_price > 0 ? `${displayPrice.format(selectedProduct?.vip_price)}  **VIP only discount!**` : ""}
               </Typography>
 
-              {auth && (
-                <>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mt: "auto" }}>
-                    {cartItem ? (
-                      <Tooltip title="Add Another">
-                        <IconButton size="small" onClick={() => updateLineItem(cartItem)}><ShoppingCartIcon /></IconButton>
+              {auth.id && (
+                <Box sx={{ display: 'flex', alignItems: 'center', mt: "auto" }}>
+                  {cartItem ? (
+                    <Tooltip title="Add Another">
+                      <IconButton size="small" onClick={() => updateLineItem(cartItem)}><ShoppingCartIcon /></IconButton>
+                    </Tooltip>
+                  ) : (
+                    selectedProduct.is_preorder && !cartItem ? (
+                      <Tooltip title="Preorder">
+                        <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><AccessAlarmOutlinedIcon /></IconButton>
                       </Tooltip>
                     ) : (
-                      selectedProduct.is_preorder && !cartItem ? (
-                        <Tooltip title="Preorder">
-                          <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><AccessAlarmOutlinedIcon /></IconButton>
-                        </Tooltip>
-                      ) : (
-                        <Tooltip title="Add to Cart">
-                          <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><ShoppingCartIcon /></IconButton>
-                        </Tooltip>
-                      )
-                    )}
-
-                    {isProductInWishlist(selectedProduct) ? (
-                      <Tooltip title="Remove from Wishlist.">
-                        <IconButton
-                          size="small"
-                          sx={{ color: 'accentPink.dark' }}
-                          onClick={() => {
-                            deleteWishlistItem(selectedProduct);
-                          }}
-                        >
-                          <FavoriteRoundedIcon />
-                        </IconButton>
+                      <Tooltip title="Add to Cart">
+                        <IconButton size="small" onClick={() => createLineItem(selectedProduct)}><ShoppingCartIcon /></IconButton>
                       </Tooltip>
-                    ) : (
-                      <Tooltip title="Add to Wishlist.">
-                        <IconButton
-                          size="small"
-                          sx={{ color: 'accentPink.dark' }}
-                          onClick={() => {
-                            createWishlistItem(selectedProduct);
-                          }}
-                        >
-                          <FavoriteBorderRoundedIcon />
-                        </IconButton>
-                      </Tooltip>
-                    )}
-                  </Box>
+                    )
+                  )}
 
-                  <Box sx={{ mt: "1rem" }}>
-                    <Typography variant="h6">Review this product</Typography>
-                    <Typography variant="body2">Share your thoughts with other customers</Typography>
-                    <Button sx={{ width: "fit-content", m: "auto", color: "primary.dark" }} onClick={() => { navigate(`/products/${selectedProduct.id}/review`) }}>Write a product review</Button>
-                  </Box>
-                </>
+                  {isProductInWishlist(selectedProduct) ? (
+                    <Tooltip title="Remove from Wishlist.">
+                      <IconButton
+                        size="small"
+                        sx={{ color: 'accentPink.dark' }}
+                        onClick={() => {
+                          deleteWishlistItem(selectedProduct);
+                        }}
+                      >
+                        <FavoriteRoundedIcon />
+                      </IconButton>
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title="Add to Wishlist.">
+                      <IconButton
+                        size="small"
+                        sx={{ color: 'accentPink.dark' }}
+                        onClick={() => {
+                          createWishlistItem(selectedProduct);
+                        }}
+                      >
+                        <FavoriteBorderRoundedIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
+                </Box>
+              )}
+
+              {auth.id && (
+                <Box sx={{ mt: "1rem" }}>
+                  <Typography variant="h6">Review this product</Typography>
+                  <Typography variant="body2">Share your thoughts with other customers</Typography>
+                  <Button sx={{ width: "fit-content", m: "auto", color: "primary.dark" }} onClick={() => { navigate(`/products/${selectedProduct.id}/review`) }}>Write a product review</Button>
+                </Box>
               )}
             </Box>
           </Box>
