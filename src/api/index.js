@@ -89,11 +89,6 @@ const updateOrder = async ({ order, setOrders }) => {
   setOrders(response.data);
 };
 
-// const updateProduct = async ({ product, products, setProducts }) => {
-//   const response = await axios.put(`/api/products/${product.id}`, product, getHeaders());
-//   setProducts(products.map(product => product.id === response.data.id ? response.data : product));
-// };
-
 const updateProduct = async ({ product, products, setProducts }) => {
   const response = await axios.put(
     `/api/products/${product.id}`,
@@ -103,7 +98,7 @@ const updateProduct = async ({ product, products, setProducts }) => {
       title: product.title,
       image: product.image,
       category: product.category,
-      genre: product.genre, // Add the genre field here
+      genre: product.genre, 
       is_preorder: product.is_preorder,
     },
     getHeaders()
@@ -202,7 +197,6 @@ const api = {
   fetchWishlistItems,
   createWishlistItem,
   deleteWishlistItem,
-  
 };
 
 export default api;

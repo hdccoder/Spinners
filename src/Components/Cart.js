@@ -42,7 +42,7 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
                       badgeContent={product.quantity}
                       sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.main" } }}
                     >
-                      <Avatar variant="square" src={product.productImage} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
+                      <Avatar variant="square" src={product.Image} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
                     </Badge>
                   </ListItemAvatar>
                   <ListItemText sx={{ fontWeight: 600 }} primary={product.name} secondary={
@@ -67,7 +67,7 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
           })
           :
           <Card sx={{ mt: "1rem", p: "1rem" }} >
-            <Typography>There are no items in the cart. Treat yourself with a cake! Add your favorite cake to the cart!</Typography>
+            <Typography>There are no items in the cart.</Typography>
           </Card>
         }
         <ListItem sx={{ py: 1, px: "1rem" }}>
