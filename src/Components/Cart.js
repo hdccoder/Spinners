@@ -42,7 +42,8 @@ const Cart = ({ removeFromCart, updateLineItem, removeOneItem, lineItems, cart, 
                       badgeContent={product.quantity}
                       sx={{ "& .MuiBadge-badge": { backgroundColor: "accentPurple.main" } }}
                     >
-                      <Avatar variant="square" src={product.Image} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
+                      
+                      <Avatar variant="square" src={product.image} alt={product.name} sx={{ width: '5rem', height: '5rem' }}></Avatar>
                     </Badge>
                   </ListItemAvatar>
                   <ListItemText sx={{ fontWeight: 600 }} primary={product.name} secondary={

@@ -139,14 +139,13 @@ const Home = ({ user , setUser }) => {
       const product = products.find(product => product?.id === lineItem?.product_id);
       return {
         name: product?.name,
-        description: product?.description,
+        title: product?.title,
         quantity: lineItem?.quantity,
         price: product?.price,
         orderId: lineItem?.order_id,
         lineItemId: lineItem?.id,
         id: product?.id,
-        vipPrice: product?.vip_price,
-        productImage: product?.product_image
+        image: product?.image
       }
     })
     return cartProducts;
