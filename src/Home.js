@@ -93,6 +93,10 @@ const Home = ({ user , setUser }) => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
 
+  const removeOneItem = async (lineItem) => {
+    await api.removeOneItem({ lineItem, cart, lineItems, setLineItems });
+  };
+
   const isProductInWishlist = (product) => {
     const item = wishlistItems.find((wishlistItem) => { return wishlistItem.product_id === product.id })
     //  if item is in wishlist, return true
@@ -117,6 +121,37 @@ const Home = ({ user , setUser }) => {
   const cartCount = cartItems.reduce((acc, item)=> {
     return acc += item.quantity;
   }, 0);
+
+
+  //checks product already in cart and return the corresponding line item
+  const getCartItem = (productId) => {
+    return cartItems.find(lineItem => lineItem.product_id === productId);
+  }
+
+  const getItemsInCart = () => {
+    //get the cart
+    const cart = orders.filter(order => order.is_cart).map((order) => { return order.id });
+    //For all placed orders - get product id from line item
+    const cartLineItems = lineItems.filter((lineItem) => cart.includes(lineItem.order_id));
+    //for each filtered line item, get all required data from products (name,quantity purchased,order id, order , product id)
+    /* passed in price:product.price to pull price info from products to be caluculated in the total order price*/
+    const cartProducts = cartLineItems.map((lineItem) => {
+      const product = products.find(product => product?.id === lineItem?.product_id);
+      return {
+        name: product?.name,
+        description: product?.description,
+        quantity: lineItem?.quantity,
+        price: product?.price,
+        orderId: lineItem?.order_id,
+        lineItemId: lineItem?.id,
+        id: product?.id,
+        vipPrice: product?.vip_price,
+        productImage: product?.product_image
+      }
+    })
+    return cartProducts;
+  }
+
 
   const login = async(credentials)=> {
     await api.login({ credentials, setAuth });
@@ -232,13 +267,16 @@ const Home = ({ user , setUser }) => {
                    
     
                 <Route path='/cart' element={
-                  <Cart
-                    cart = { cart }
-                    lineItems = { lineItems }
-                    products = { products }
-                    updateOrder = { updateOrder }
-                    removeFromCart = { removeFromCart }
-                  />
+                <Cart
+                cart={cart}
+                lineItems={lineItems}
+                products={products}
+                updateOrder={updateOrder}
+                removeFromCart={removeFromCart}
+                removeOneItem={removeOneItem}
+                updateLineItem={updateLineItem}
+                getItemsInCart={getItemsInCart}
+              />
                 }/>
                 <Route
                     path="/products/:id/review"
