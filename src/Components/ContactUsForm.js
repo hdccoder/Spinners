@@ -3,17 +3,23 @@ import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Paper, InputLabel } from '@mui/material';
 import { styled } from '@mui/system';
 
-
-
 const ContactContainer = styled(Paper)(({ theme }) => ({
   backgroundImage: 'url("/public/assets/CONTACTPG1.jpg")',
   backgroundSize: '100% 100%',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  height: '100vh',
+  height: '90vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  position: 'relative',
+  marginTop:'450px',
+  width: '80%',
+  top: '50%',
+  left: '50%',
+  bottom:'64%',
+  transform: 'translate(-50%, -50%)', // Center the container
+
 }));
 
 const TransparentTextField = styled(TextField)(({ theme }) => ({
@@ -22,14 +28,18 @@ const TransparentTextField = styled(TextField)(({ theme }) => ({
 
 const ContactFormContainer = styled(Paper)(({ theme }) => ({
   backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  padding: theme.spacing(4),
-  width: '40%',
-  marginLeft: theme.spacing(-70),
-  marginTop: theme.spacing(40),
+  padding: theme.spacing(2),
+  width: '37%',
+  height: '60%', // Adjust the height of the form
+  position: 'absolute',
+  left: '23%',
+  top: '69%',
+  transform: 'translate(-50%, -50%)',
 }));
 
 const TransparentInputLabel = styled(InputLabel)(({ theme }) => ({
   color: 'black',
+  marginBottom: theme.spacing(1), // Adjust the margin at the bottom for spacing
 }));
 
 const ContactUsForm = ({ onSubmit }) => {
@@ -44,11 +54,10 @@ const ContactUsForm = ({ onSubmit }) => {
     }
   };
 
-
   return (
     <ContactContainer>
       <ContactFormContainer elevation={3}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TransparentInputLabel htmlFor="name">Name</TransparentInputLabel>
@@ -89,7 +98,7 @@ const ContactUsForm = ({ onSubmit }) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary" style={{ marginTop: '-.35cm' }}>
                 Submit
               </Button>
             </Grid>
