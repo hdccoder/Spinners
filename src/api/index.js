@@ -178,6 +178,17 @@ const logout = (setAuth) => {
   setAuth({});
 };
 
+//update user, can also update VIP status
+const updateAddress = async(user, setUser) =>{
+  const response = await axios.put(`/api/users/${user.user_id}/address`,user, getHeaders());
+  setUser(response.data)
+}; 
+
+//reset user password
+const resetPassword = async(password,userId)=>{
+  const response = await axios.patch(`/api/users/${userId}/password`,{password},getHeaders());
+}
+
 const api = {
   login,
   logout,
@@ -197,6 +208,8 @@ const api = {
   fetchWishlistItems,
   createWishlistItem,
   deleteWishlistItem,
+  updateAddress,
+  resetPassword,
 };
 
 export default api;

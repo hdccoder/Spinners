@@ -17,7 +17,7 @@ const ContactContainer = styled(Paper)(({ theme }) => ({
   width: '80%',
   top: '50%',
   left: '50%',
-  bottom:'64%',
+ 
   transform: 'translate(-50%, -50%)', // Center the container
 
 }));

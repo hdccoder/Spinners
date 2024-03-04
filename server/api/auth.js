@@ -2,6 +2,7 @@ const {
   authenticate,
   findUserByToken,
   createUser,
+  resetPassword,
 } = require('../db');
 
 const express = require('express');
@@ -33,5 +34,37 @@ app.get('/me', isLoggedIn, (req, res, next) => {
     next(ex);
   }
 });
+
+//update user db
+app.put('/users/:id', isLoggedIn, async(req, res, next) => {
+  try {
+      res.send(await updateUser({...req.body, id: req.params.id}));
+  } catch (ex) {
+    next(ex);
+  }
+
+})
+
+//update customers address in db
+app.put('/users/:id/address', isLoggedIn, async(req, res, next) => {
+  try {
+    res.send(await updateAddress({...req.body, id: req.params.id}));
+} catch (ex) {
+  next(ex);
+}
+})
+
+app.patch('/users/:id/password',isLoggedIn,async(req,res,next)=>{
+try{
+ res.send(await resetPassword({...req.body,id:req.params.id}));
+}catch (ex) {
+  next(ex);
+}
+})
+
+
+
+
+
 
 module.exports = app;

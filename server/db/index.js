@@ -16,7 +16,9 @@ const {
 const {
   createUser,
   authenticate,
-  findUserByToken
+  findUserByToken,
+  updateAddress,
+  resetPassword,
 } = require('./auth');
 
 const {
@@ -61,9 +63,17 @@ const seed = async()=> {
     CREATE TABLE users(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
+      firstname VARCHAR(100) NOT NULL,
+      lastname VARCHAR(100) NOT NULL,
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
-      is_admin BOOLEAN DEFAULT false NOT NULL
+      is_admin BOOLEAN DEFAULT false NOT NULL,
+      address_line1 VARCHAR(25),
+      address_line2 VARCHAR(25),
+      city VARCHAR(15),
+      state VARCHAR(15),
+      zip_code NUMERIC (5),
+      phone NUMERIC (10)
     );
 
     CREATE TABLE products(
@@ -123,9 +133,16 @@ const seed = async()=> {
   await client.query(SQL);
 
   const [moe, lucy, ethyl] = await Promise.all([
-    createUser({ username: 'moe', password: 'm_password', is_admin: false}),
-    createUser({ username: 'lucy', password: 'l_password', is_admin: false}),
-    createUser({ username: 'ethyl', password: '1234', is_admin: true})
+    createUser({firstname: "Moesha", lastname: "Norwood", username: 'moe', password: '1234', is_admin: false, }),
+    createUser({ firstname: "Lucinda", lastname: "Hall", username: 'lucy', password: '1234', is_admin: false, }),
+    createUser({ firstname: "Ethyleen", lastname: "Sims", username: 'ethyl', password: '1234', is_admin: true, })
+  ]);
+
+  await Promise.all([
+    updateAddress({ user_id: moe.id, address_line1: "4482 Lady Bug Dr", city: "Bronx", state: "NY", zip_code: "10458", phone: "3125554892" }),
+    updateAddress({ user_id: lucy.id, address_line1: "3730 Hartland Ave", city: "Fond Du Lac", state: "WI", zip_code: "54935", phone: "8155552773" }),
+    updateAddress({ user_id: ethyl.id, address_line1: "13 Ersel St", address_line2: "Apt. 5", city: "Smithboro", state: "IL", zip_code: "62284", phone: "6305551024" })
+  
   ]);
 
   const V1Image = await loadImage('images/Silk Sonic.png')
@@ -289,6 +306,8 @@ module.exports = {
   updateOrder,
   authenticate,
   findUserByToken,
+  updateAddress,
+  resetPassword,
   createUser,
   updateProduct,
   seed,

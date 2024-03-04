@@ -17,6 +17,9 @@ const GenrePage = ({ products, cartItems, createLineItem, updateLineItem, auth, 
 
     return (
         <div>
+            <Typography variant="h2" align="center" padding={2}>
+                Shop Our Playlist
+            </Typography>
             {genres.map((genreItem) => (
                 <Box key={genreItem.name} mb={4}>
                   

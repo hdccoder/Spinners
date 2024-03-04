@@ -18,6 +18,7 @@ import Preorder from './Components/Preorder';
 import ContactUsForm from './Components/ContactUsForm';
 import GenrePage from './Components/GenrePage';
 import ProductReview from './Components/ProductReview';
+import Checkout from './Components/Checkout';
 
 const Home = ({ user , setUser }) => {
 
@@ -151,13 +152,16 @@ const Home = ({ user , setUser }) => {
     return cartProducts;
   }
 
-
   const login = async(credentials)=> {
     await api.login({ credentials, setAuth });
   }
 
   const logout = ()=> {
     api.logout(setAuth);
+  }
+
+  const placeOrder = () => {
+    updateOrder({ ...cart, is_cart: false });
   }
 
       return (
@@ -287,9 +291,7 @@ const Home = ({ user , setUser }) => {
                         path="/wishlist"
                         element={<Wishlist wishlistItems={wishlistItems} products={products}/>}
                       /> */}
-    
-    
-                        
+          
                 <Route path='/orders' element={
                   <Orders
                     orders = { orders }
@@ -297,6 +299,11 @@ const Home = ({ user , setUser }) => {
                     lineItems = { lineItems }
                   />
                 }/>
+
+                <Route path="/:orderid/checkout" element={
+                <Checkout getItemsInCart={getItemsInCart}
+                placeOrder={placeOrder} user={user} />} />
+                 
                     </>
                   }
     
