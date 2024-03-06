@@ -7,7 +7,8 @@ const reviews = [
     {  rating: 5, title: 'Awesome', comments: 'Somehow they always have the records noone else has.'},
     { rating: 5, title: 'The Sound, The Quailty, The Culture', comments: 'If your looking for an amazing experience you have come to the right place, there is always good vibes at Spinners one of the best place in the City.' },
     { rating: 5, title: 'I love this place', comments: 'I love the Thursdays here and they really have the BEST events for Vinyl lovers.' },
-   
+    { rating: 5, title: 'Good Times Good Vibes Great Music', comments: 'If you find the time come to one of their events! You will not regret!' },
+    {  rating: 5, title: 'Hide Gem', comments: 'Definietly, a must stop of NYC, this place is fool of culture, and the staff is SO MUCH FUN!!!'},
   ];
 
 const DisplayReviews = () => {

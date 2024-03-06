@@ -22,6 +22,7 @@ const ProductCard = styled(Card)({
   width: 300,
   height: '100%',
   margin: '8px',
+  paddingTop: '20px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',

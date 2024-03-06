@@ -13,7 +13,7 @@ const ContactContainer = styled(Paper)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   position: 'relative',
-  marginTop:'450px',
+  marginTop:'520px',
   width: '80%',
   top: '50%',
   left: '50%',
