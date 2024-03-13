@@ -19,6 +19,7 @@ import ContactUsForm from './Components/ContactUsForm';
 import GenrePage from './Components/GenrePage';
 import ProductReview from './Components/ProductReview';
 import Checkout from './Components/Checkout';
+import UserProfile from './UserProfile';
 
 const Home = ({ user , setUser }) => {
 
@@ -266,7 +267,26 @@ const Home = ({ user , setUser }) => {
                   { auth.id  &&
                     <>
     
-                     
+    <Route
+                    path="/user-profile_mui"
+                    element={
+                      <UserProfile
+                        user={user}
+                        setUser={setUser}
+                        wishlistItems={wishlistItems}
+                        products={products}
+                        cartItems={cartItems}
+                        createWishlistItem={createWishlistItem}
+                        deleteWishlistItem={deleteWishlistItem}
+                        orders={orders}
+                        lineItems={lineItems}
+                        getCartItem={getCartItem}
+                        createLineItem={createLineItem}
+                        updateLineItem={updateLineItem}
+                        isProductInWishlist={isProductInWishlist}
+                      />
+                    }>
+                  </Route>     
                    
     
                 <Route path='/cart' element={

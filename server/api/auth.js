@@ -2,6 +2,7 @@ const {
   authenticate,
   findUserByToken,
   createUser,
+  updateUser,
   resetPassword,
 } = require('../db');
 

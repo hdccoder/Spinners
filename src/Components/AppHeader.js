@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Badge, Box, Button, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate, NavLink } from 'react-router-dom';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
@@ -153,6 +154,16 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
                   </Badge>
                 </IconButton>
               </Tooltip>
+             
+              <Tooltip title={"User profile"}>
+              <IconButton
+                color="inherit"
+                aria-label={"user profile"}
+                onClick={() => navigate("/user-profile_mui")}
+              >
+                <AccountCircleIcon fontSize='large' />
+              </IconButton>
+            </Tooltip>
             </>
           )}
 

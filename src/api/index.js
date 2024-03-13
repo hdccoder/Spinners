@@ -178,6 +178,13 @@ const logout = (setAuth) => {
   setAuth({});
 };
 
+//updateUser in db use 
+const updateProfile = async (user, setAuth) => {
+  const response = await axios.put(`/api/users/${user.user_id}`, user, getHeaders());
+  //use setAuth() to update the state 
+  setAuth(response.data)
+};
+
 //update user, can also update VIP status
 const updateAddress = async(user, setUser) =>{
   const response = await axios.put(`/api/users/${user.user_id}/address`,user, getHeaders());
@@ -208,6 +215,7 @@ const api = {
   fetchWishlistItems,
   createWishlistItem,
   deleteWishlistItem,
+  updateProfile,
   updateAddress,
   resetPassword,
 };

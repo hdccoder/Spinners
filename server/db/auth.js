@@ -4,16 +4,16 @@ const uuidv4 = v4;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const findUserByToken = async(token) => {
+const findUserByToken = async (token) => {
   try {
     const payload = await jwt.verify(token, process.env.JWT);
     const SQL = `
-      SELECT id, username, is_admin
+      SELECT id, firstname, lastname, username, is_admin, address_line1, address_line2, city, state, zip_code, phone
       FROM users
       WHERE id = $1
     `;
     const response = await client.query(SQL, [payload.id]);
-    if(!response.rows.length){
+    if (!response.rows.length) {
       const error = Error('bad credentials');
       error.status = 401;
       throw error;
@@ -21,7 +21,7 @@ const findUserByToken = async(token) => {
 
     return response.rows[0];
   }
-  catch(ex){
+  catch (ex) {
     console.log(ex);
     const error = Error('bad credentials');
     error.status = 401;
@@ -78,6 +78,22 @@ const createUser = async(user)=> {
   return response.rows[0];
 };
 
+//declared updateUsers SQL... exported
+const updateUser = async(user)=> {
+  const SQL = `
+    UPDATE users
+    SET  firstname = $1,
+    lastname = $2,
+    username = $3
+    WHERE id = $4
+    RETURNING *
+  `;
+  const response = await client.query(SQL, [ user.firstName, user.lastName, user.userName, user.user_id]);
+  return response.rows[0];
+};
+
+
+
 const resetPassword = async (user) => {
   user.password = await bcrypt.hash(user.password, 5)
   const SQL = `
@@ -92,6 +108,7 @@ const resetPassword = async (user) => {
 
 module.exports = {
   createUser,
+  updateUser,
   authenticate,
   findUserByToken,
   updateAddress,

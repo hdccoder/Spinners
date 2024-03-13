@@ -15,6 +15,7 @@ const {
 
 const {
   createUser,
+  updateUser,
   authenticate,
   findUserByToken,
   updateAddress,
@@ -309,6 +310,7 @@ module.exports = {
   updateAddress,
   resetPassword,
   createUser,
+  updateUser,
   updateProduct,
   seed,
   client
