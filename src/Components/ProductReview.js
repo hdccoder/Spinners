@@ -49,7 +49,7 @@ const ProductReview = ({ products }) => {
       comments,
       ratings,
       product_id: product.id,
-      product_image
+      product_image: product.image
     };
 
     const addreview = async (productId) => {

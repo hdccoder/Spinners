@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Grid, TextField, Button, Paper, InputLabel } from '@mui/material';
 import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+
 
 const ContactContainer = styled(Paper)(({ theme }) => ({
   backgroundImage: 'url("/public/assets/CONTACTPG1.jpg")',
@@ -44,10 +46,12 @@ const TransparentInputLabel = styled(InputLabel)(({ theme }) => ({
 
 const ContactUsForm = ({ onSubmit }) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+  const navigate = useNavigate();
+  
   const handleFormSubmit = async (data) => {
     try {
       await onSubmit(data);
+      navigate("/thankyou?sentFrom=Contact");
     } catch (error) {
       console.error('Error submitting contact form:', error);
       // Handle the error or display an error message to the user

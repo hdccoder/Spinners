@@ -20,6 +20,8 @@ import GenrePage from './Components/GenrePage';
 import ProductReview from './Components/ProductReview';
 import Checkout from './Components/Checkout';
 import UserProfile from './UserProfile';
+import ThankYou from './Components/ThankYou';
+import Community from './Components/Community';
 
 const Home = ({ user , setUser }) => {
 
@@ -194,6 +196,7 @@ const Home = ({ user , setUser }) => {
                   />
                   <PreOrdersButton/>
                  <SpinClub/>
+                 {/* <Community/> */}
                     </>
                   }>
                      
@@ -262,8 +265,8 @@ const Home = ({ user , setUser }) => {
         />
               
               <Route path='/contact' element={<ContactUsForm onSubmit={onContactFormSubmit} />} />
-                 
-               \
+              <Route path="/thankyou" element={<ThankYou />} />
+               
                   { auth.id  &&
                     <>
     
