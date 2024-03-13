@@ -53,30 +53,30 @@ const defaultTheme = createTheme({
   },
   typography: {
     fontWeightLight: 200,
-    fontFamily: 'Arial',
+    fontFamily: 'Noteworthy',
     h1: {
-      fontFamily: 'Courier',
+      fontFamily: 'Noteworthy',
       fontWeight: 800,
     },
     h2: {
-      fontFamily: 'Courier',
-      fontWeight: 800,
+      fontFamily: 'Noteworthy',
+      fontWeight: 780,
     },
     h3: {
-      fontFamily: 'Courier',
-      fontWeight: 800,
+      fontFamily: 'Noteworthy',
+      fontWeight: 700,
     },
     h4: {
-      fontFamily: 'Courier',
-      fontWeight: 800,
+      fontFamily: 'Noteworthy',
+      fontWeight: 690,
     },
     h5: {
-      fontFamily: 'Courier',
-      fontWeight: 800,
+      fontFamily: 'Noteworthy',
+      fontWeight: 700,
     },
     h6: {
-      fontFamily: 'Courier',
-      fontWeight: 800,
+      fontFamily: 'Noteworthy',
+      fontWeight: 600,
     },
     body1: {
       fontWeight: 550

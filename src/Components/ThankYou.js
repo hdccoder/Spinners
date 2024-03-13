@@ -36,7 +36,8 @@ const ThankYou = ()=>{
 
   return(
     <>
-        <Box 
+        <Box
+    
             sx={{ 
                 mx: 'auto',
                 p: 1,
@@ -44,7 +45,7 @@ const ThankYou = ()=>{
                 textAlign: 'center'
             }}
         >           
-            <Typography variant="h1">
+            <Typography variant="h2">
                 Thank you
             </Typography>
             <Typography variant="h3" >
@@ -64,7 +65,7 @@ const ThankYou = ()=>{
             </Box>
             <Typography variant="h4" sx={{mt: 1}}>
                 {inputToDisplay.request} 
-                <Link href={inputToDisplay.sendTo} variant="inherit" underline= 'none' sx={{color: 'blue'}}>
+                <Link href={inputToDisplay.sendTo} variant="inherit" underline= 'none' sx={{color: '#e51ad4'}}>
                     {inputToDisplay.location}
                 </Link>
             </Typography> 

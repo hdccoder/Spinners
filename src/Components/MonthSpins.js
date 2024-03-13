@@ -28,7 +28,7 @@ function MonthSpins({ products }) {
   
   return (
     <Box>
-      <Typography variant='h4'>
+      <Typography variant='h4' marginBottom={2}>
        Spins of the Month
       </Typography>
       <Container maxWidth="xl" sx={{ height: "25rem" }}>
