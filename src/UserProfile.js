@@ -26,7 +26,7 @@ const UserProfile = ({
     return (
     <Container>
       <Typography variant="h3" align="center" sx={{ m: 4 }} >
-        Profile page for: {user.firstname} {user.lastname}
+        Welcome {user.firstname} {user.lastname}
       </Typography>
       <Accordion  elevation={5} sx={{ mt: 0, mb: 4}} >
         <AccordionSummary

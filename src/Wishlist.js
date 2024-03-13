@@ -68,7 +68,7 @@ const Wishlist = ({ wishlistItems, products, cartItems, getCartItem, createLineI
             <ImageListItem key={product.name}>
               <img
                 // srcSet={`https://source.unsplash.com/random/?${product.name}[${index}]?w=248&fit=crop&auto=format&dpr=2 2x`}
-                src={`${product.product_image}`}
+                src={`${product.image}`}
                 alt={product.name}
                 loading="lazy"
               />
