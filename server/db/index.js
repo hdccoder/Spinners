@@ -298,6 +298,7 @@ module.exports = {
   fetchOrders,
   fetchLineItems,
   fetchReviews,
+  createReview,
   createWishlistItem,
   fetchWishlistItems,  
   deleteWishlistItem,
