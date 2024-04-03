@@ -1,4 +1,11 @@
 require('dotenv').config(); // Load environment variables from .env file
+const crypto = require('crypto');
+
+// Generate a random secret key
+const secretKey = crypto.randomBytes(32).toString('hex');
+
+// Store the generated secret key in an environment variable
+process.env.JWT_SECRET = secretKey;
 
 const express = require('express');
 const app = express();
