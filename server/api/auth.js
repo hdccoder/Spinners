@@ -3,6 +3,7 @@ const {
   findUserByToken,
   createUser,
   updateUser,
+  updateAddress,
   resetPassword,
 } = require('../db');
 const express = require('express');
@@ -17,6 +18,7 @@ app.post('/login', async (req, res, next) => {
     next(ex);
   }
 });
+
 app.post('/users/register', async (req, res, next) => {
   try {
     const response = await createUser(req.body);
