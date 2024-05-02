@@ -23,14 +23,15 @@ import UserProfile from './UserProfile';
 import ThankYou from './Components/ThankYou';
 import Community from './Components/Community';
 
-const Home = ({ user , setUser }) => {
 
+const Home = ({ user, setUser, darkMode, toggleDarkMode}) => {
 
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
   const [wishlistItems, setWishlistItems] = useState([]);
+
 
   const attemptLoginWithToken = async()=> {
     await api.attemptLoginWithToken(setAuth);
@@ -169,22 +170,24 @@ const Home = ({ user , setUser }) => {
 
       return (
         <Box>
-          <Box sx={{ display: 'flex', minHeight: "100vh" }}>
-       
-            <AppHeader auth={auth} logout={logout} cartCount={cartCount} />
-            <Box
-              component="main"
-              sx={{
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'light'
-                    ? theme.palette.grey[100]
-                    : theme.palette.grey[900],
-                flexGrow: 1,
-                // height: '100vh',
-                overflow: 'auto',
-                paddingTop: '5rem'
-              }}
-            >
+            <Box sx={{ display: 'flex', minHeight: "100vh" }}>
+        <AppHeader
+          auth={auth}
+          logout={logout}
+          cartCount={cartCount}
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode} // Pass toggleDarkMode function here
+        />
+          <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+            flexGrow: 1,
+            overflow: 'auto',
+            paddingTop: '5rem',
+          }}
+        >
     
               <Container maxWidth="xl" sx={{ mt: 10, mb: 4 }}>
                 <Routes>
@@ -334,7 +337,7 @@ const Home = ({ user , setUser }) => {
               </Container>
             </Box>
           </Box>
-          <AppFooter />
+          <AppFooter darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         </Box >
       );
 

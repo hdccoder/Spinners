@@ -9,7 +9,7 @@ import SignUp from './Components/SignUp';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-const defaultTheme = createTheme({
+const lightTheme = createTheme({
   palette: {
     mode: 'light',
     //blue
@@ -44,7 +44,7 @@ const defaultTheme = createTheme({
     },
     //very light cream
     background: {
-      default: '#f3eedc',
+      default: '#FFFFFF',
     },
     text: {
       primary: 'rgba(20,20,20,1)',
@@ -87,11 +87,49 @@ const defaultTheme = createTheme({
   },
 });
 
-const App = ()=> {
- 
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    // You can customize the dark mode palette here
+    primary: {
+      main: '#90caf9', // Example primary color
+    },
+    secondary: {
+      main: '#f48fb1', // Example secondary color
+    },
+    // Other palette options such as background, text, etc.
+  },
+  typography: {
+    // You can customize typography settings here
+    fontFamily: 'Roboto', // Example font family
+    // Other typography settings such as fontSize, fontWeight, etc.
+  },
+});
+
+const App = () => {
   const [auth, setAuth] = useState({});
+  const [darkMode, setDarkMode] = useState(() => {
+    // Retrieve darkMode value from local storage
+    const storedDarkMode = JSON.parse(localStorage.getItem('darkMode'));
+    // Return true if darkMode is stored as true or if the user prefers dark mode, otherwise false
+    return storedDarkMode !== null ? storedDarkMode : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
   const navigate = useNavigate();
-  
+
+  const toggleDarkMode = () => {
+    // Toggle darkMode state
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    // Store updated darkMode value in local storage
+    localStorage.setItem('darkMode', JSON.stringify(newDarkMode));
+  };
+
+  useEffect(() => {
+    // Attempt to login with token on component mount
+    attemptLoginWithToken(setAuth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const login = async (credentials) => {
     await api.login({ credentials, setAuth });
     navigate("/");
@@ -100,35 +138,32 @@ const App = ()=> {
   const logout = () => {
     api.logout(setAuth);
     navigate("/");
-   }; 
+  };
 
-   const attemptLoginWithToken = async (setAuth) => {
+  const attemptLoginWithToken = async (setAuth) => {
     const token = window.localStorage.getItem('token');
     if (token) {
       try {
         const response = await axios.get('/api/me', getHeaders());
         setAuth(response.data);
-      }
-      catch (ex) {
+      } catch (ex) {
         if (ex.response.status === 401) {
           window.localStorage.removeItem('token');
         }
       }
     }
-  }
+  };
 
-  
   return (
-   
-      <ThemeProvider theme={defaultTheme}>
-        <CssBaseline />
-        <Routes>
-          <Route path="/*" element={<Home user={auth} logout={logout} setUser={setAuth} />} />
-          <Route path="/sign-in" element={<SignIn login={login} />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-      </ThemeProvider>
-    )
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <Routes>
+        <Route path="/*" element={<Home user={auth} logout={logout} setUser={setAuth} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
+        <Route path="/sign-in" element={<SignIn login={login} />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </ThemeProvider>
+  );
 };
 
 const root = ReactDOM.createRoot(document.querySelector('#root'));

@@ -5,10 +5,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate, NavLink } from 'react-router-dom';
+import Brightness4Icon from '@mui/icons-material/Brightness4'
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
-const AppHeader = ({ auth, logout, cartCount, products }) => {
+
+const AppHeader = ({ auth, logout, cartCount, darkMode, toggleDarkMode }) => {
   const navigate = useNavigate();
+
 
   return (
     <AppBar position="absolute" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, height: "0" }}>
@@ -45,13 +48,14 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
           >
             {`SPINNERS`}
           </Typography>
+          
 
           {/* SHOP and Preorder Tooltips side by side */}
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 2 }}>
   <Tooltip title={"Shop"} color="inherit" fontFamily="Noteworthy">
     <NavLink
     to='/products'
-    activeClassName="selectedLink"
+    activeclassname="selectedLink"
     className="navLink"
     style={{
       display: 'flex',
@@ -73,7 +77,7 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
             <Tooltip title={"Preorder"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
               <NavLink
                 to='/preorder'
-                activeClassName="selectedLink"
+                activeclassname="selectedLink"
                 className="navLink"
                 style={{
                 display: 'flex',
@@ -96,7 +100,7 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
           <Tooltip title={"Playlist"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
               <NavLink
                 to='/playlist'
-                activeClassName="selectedLink"
+                activeclassname="selectedLink"
                 className="navLink"
                 style={{
                 display: 'flex',
@@ -119,7 +123,7 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
           <Tooltip title={"Contact"} color="inherit" fontFamily="Noteworthy" sx={{ marginLeft: 2 }}>
               <NavLink
                 to='/contact'
-                activeClassName="selectedLink"
+                activeclassname="selectedLink"
                 className="navLink"
                 style={{
                 display: 'flex',
@@ -144,6 +148,12 @@ const AppHeader = ({ auth, logout, cartCount, products }) => {
 
         {/* User Actions */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {/* Dark mode toggle button */}
+       <Tooltip title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+          <IconButton color="inherit" onClick={toggleDarkMode}>
+            <Brightness4Icon />
+          </IconButton>
+        </Tooltip>
           {auth.id && (
             <>
               {/* Cart Tooltip */}
