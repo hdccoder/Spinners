@@ -24,6 +24,7 @@ import ThankYou from './Components/ThankYou';
 import Community from './Components/Community';
 
 
+
 const Home = ({ user, setUser, darkMode, toggleDarkMode}) => {
 
   const [products, setProducts] = useState([]);

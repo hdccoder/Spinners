@@ -66,3 +66,7 @@ button {
 button:hover {
   background-color: darkgreen; /* Set your desired button hover color */
 }
+
+body {
+  background-color: #C0C0C0; /* Silver color for dark mode background */
+}

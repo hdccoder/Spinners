@@ -90,19 +90,19 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    // You can customize the dark mode palette here
     primary: {
-      main: '#90caf9', // Example primary color
+      main: '#C0C0C0',
     },
     secondary: {
-      main: '#f48fb1', // Example secondary color
+      main: '#f48fb1',
     },
-    // Other palette options such as background, text, etc.
+    background: {
+      default: '#C0C0C0', // Silver color for dark mode background
+    },
   },
   typography: {
-    // You can customize typography settings here
-    fontFamily: 'Roboto', // Example font family
-    // Other typography settings such as fontSize, fontWeight, etc.
+    fontFamily: 'Noteworthy',
+    // Add other typography settings as needed
   },
 });
 
@@ -156,7 +156,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <CssBaseline />
+        <CssBaseline style={{ backgroundColor: darkMode ? '#C0C0C0' : '#FFFFFF' }} />
       <Routes>
         <Route path="/*" element={<Home user={auth} logout={logout} setUser={setAuth} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
         <Route path="/sign-in" element={<SignIn login={login} />} />
